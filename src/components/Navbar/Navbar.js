@@ -13,7 +13,7 @@ class Navbar extends Component {
       }
     return (
       <nav style={navStyle}>
-            <Link to='/'>Бронирование переговорок</Link>
+            <Link to='/'>Бронирование переговорных залов</Link>
             <LogOutLinks />
             <LogInLinks />
       </nav>
