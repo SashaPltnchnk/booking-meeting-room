@@ -1,16 +1,10 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
 import Authorization from '../Navbar/Authorization/Authorization'
-// import Scheduler, {SchedulerData, ViewTypes, DATE_FORMAT} from 'react-big-scheduler'
-// import 'react-big-scheduler/lib/css/style.css'
-// import moment from 'moment'
 import SchedulerComponent from '../Scheduler/Scheduler'
-// import Dayz from '../Scheduler/Dayz'
-// import Calendar from '../Scheduler/Calendar'
-// import Rooms from './Rooms/Rooms'
+import Rooms from './Rooms/Rooms'
 
 const layout = (props) => {
-    // const {schedulerData} = this.props;
     return ( 
         <>
             <Route 
@@ -27,8 +21,9 @@ const layout = (props) => {
                                 authPath={'register'} 
                                 />} 
             />
+            
+            <Rooms />
             <SchedulerComponent />
-            {/* <Rooms /> */}
         </>
      );
 }
