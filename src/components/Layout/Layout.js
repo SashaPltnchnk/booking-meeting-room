@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
 import Authorization from '../Navbar/Authorization/Authorization'
-import SchedulerComponent from '../Scheduler/Scheduler'
+import Scheduler from '../Scheduler/Scheduler'
 import Rooms from './Rooms/Rooms'
 
 const layout = (props) => {
@@ -21,9 +21,35 @@ const layout = (props) => {
                                 authPath={'register'} 
                                 />} 
             />
-            
             <Rooms />
-            <SchedulerComponent />
+            <Route 
+                path='/green' 
+                render={() => <Scheduler 
+                                // roomName={'Зеленая'} 
+                                // quantity={'5'}  
+                                authPath={'green'} 
+                                />} />
+            <Route 
+                path='/red' 
+                render={() => <Scheduler 
+                                // roomName={'Красная'} 
+                                // quantity={'15'}  
+                                authPath={'red'} 
+                                />} />
+            <Route 
+                path='/blue' 
+                render={() => <Scheduler 
+                                // roomName={'Синяя'} 
+                                // quantity={'25'}  
+                                authPath={'blue'} 
+                                />} />
+            <Route 
+                path='/violet' 
+                render={() => <Scheduler 
+                                // roomName={'Фиолетовая'} 
+                                // quantity={'25'}  
+                                authPath={'violet'} 
+                                />} />
         </>
      );
 }

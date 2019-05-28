@@ -1,8 +1,12 @@
 import React, { Component } from "react";
 import BigCalendar from "react-big-calendar";
 import moment from "moment";
+import events from './events'
+// import ControlSlot from './ControlSlot'
 
 import "react-big-calendar/lib/css/react-big-calendar.css";
+
+
 
 const localizer = BigCalendar.momentLocalizer(moment);
 
@@ -33,66 +37,50 @@ const formats = {
 
 class Scheduler extends Component { 
   state = {
-    events: [
-    //   {
-    //     start: new Date(),
-    //     end: new Date(moment().add(1, "days")),
-    //     title: "Some title"
-    //   },
-      {
-        title: 'Dying',
-        start: new Date(2019, 4, 28, 9, 0, 0),
-        end: new Date(2019, 4, 28, 10, 0, 0),
-      },
-      {
-        title: 'Dying',
-        start: new Date(2019, 4, 28, 10, 0, 0),
-        end: new Date(2019, 4, 28, 11, 0, 0),
-      },
-      {
-        title: 'Dying',
-        start: new Date(2019, 4, 28, 11, 0, 0),
-        end: new Date(2019, 4, 28, 12, 0, 0),
-      },
-    //   {
-    //     title: 'Today',
-    //     start: new Date(new Date().setHours(new Date().getHours() - 2)),
-    //     end: new Date(new Date().setHours(new Date().getHours() + 3)),
-    //   },
-    // {
-    //     title: 'test',
-    //     start: moment().add(1, 'days').subtract(5, 'hours').toDate(),
-    //     end: moment().add(1, 'days').subtract(4, 'hours').toDate(),
-    //     allDay: false
-    //   },
-    //   {
-    //     title: 'test all day',
-    //     start: moment().toDate(),
-    //     end: moment().toDate(),
-    //     allDay: true
-    //   }
-    ]
+    events
   };
+
+  handleSelect = ({ start, end }) => {
+    const title = window.prompt('New Event name')
+    if (title)
+      this.setState({
+        events: [
+          ...this.state.events,
+          {
+            start,
+            end,
+            title,
+          },
+        ],
+      })
+  }
 
   render() {
     return (
       <div style={{ display: 'flex' }}>
+          {/* <ControlSlot.Entry waitForOutlet>
+
+          </ControlSlot.Entry> */}
         <BigCalendar
           localizer={localizer}
           defaultDate={new Date()}
           min={moment('9:00am', 'h:mma').toDate()}
           max={moment('6:00pm', 'h:mma').toDate()}
-        //   timeslots={3}
-        //   step={15}
+        //   timeslots={0}
+        //   step={8}
         //   step={14}
         //   timeslots={7}
         //   min={9}
         //   max={10}
+        // step={60}
 
           formats={formats}
           views={allViews}
           defaultView='work_week'
           events={this.state.events}
+          selectable
+          onSelectEvent={event => alert(event.title)}
+          onSelectSlot={this.handleSelect}
           style={{ height: "80vh", width: "100vw"}}
         />
       </div>
