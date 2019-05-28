@@ -12,14 +12,24 @@ export default [
         end: new Date(2019, 4, 28, 10, 0, 0),
       },
       {
-        title: 'can',
+        title: 'must',
         start: new Date(2019, 4, 28, 10, 0, 0),
         end: new Date(2019, 4, 28, 11, 0, 0),
       },
       {
-        title: 'pass',
+        title: 'do',
         start: new Date(2019, 4, 28, 11, 0, 0),
         end: new Date(2019, 4, 28, 12, 0, 0),
+      },
+      {
+        title: 'it',
+        start: new Date(2019, 4, 29, 12, 0, 0),
+        end: new Date(2019, 4, 29, 13, 0, 0),
+      },
+      {
+        title: 'betterrrrrr',
+        start: new Date(2019, 4, 29, 13, 0, 0),
+        end: new Date(2019, 4, 29, 14, 0, 0),
       },
     //   {
     //     title: 'Today',

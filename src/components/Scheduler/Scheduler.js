@@ -4,7 +4,7 @@ import moment from "moment";
 import events from './events'
 // import ControlSlot from './ControlSlot'
 
-import "react-big-calendar/lib/css/react-big-calendar.css";
+// import "react-big-calendar/lib/css/react-big-calendar.css";
 
 
 
@@ -57,7 +57,7 @@ class Scheduler extends Component {
 
   render() {
     return (
-      <div style={{ display: 'flex' }}>
+      <div>
           {/* <ControlSlot.Entry waitForOutlet>
 
           </ControlSlot.Entry> */}
