@@ -4,10 +4,10 @@ import Authorization from '../Navbar/Authorization/Authorization'
 // import Scheduler, {SchedulerData, ViewTypes, DATE_FORMAT} from 'react-big-scheduler'
 // import 'react-big-scheduler/lib/css/style.css'
 // import moment from 'moment'
-// import SchedulerComponent from '../Scheduler/Scheduler'
+import SchedulerComponent from '../Scheduler/Scheduler'
 // import Dayz from '../Scheduler/Dayz'
 // import Calendar from '../Scheduler/Calendar'
-import Rooms from './Rooms/Rooms'
+// import Rooms from './Rooms/Rooms'
 
 const layout = (props) => {
     // const {schedulerData} = this.props;
@@ -27,18 +27,8 @@ const layout = (props) => {
                                 authPath={'register'} 
                                 />} 
             />
-            {/* <SchedulerComponent /> */}
-            {/* <SchedulerComponent 
-                schedulerData={props.schedulerData}
-                prevClick={props.prevClick}
-                nextClick={props.nextClick}
-                onSelectDate={props.onSelectDate}
-                onViewChange={props.onViewChange}
-                eventItemClick={props.eventClicked}
-                /> */}
-            {/* <Dayz /> */}
-            {/* <Calendar /> */}
-            <Rooms />
+            <SchedulerComponent />
+            {/* <Rooms /> */}
         </>
      );
 }
