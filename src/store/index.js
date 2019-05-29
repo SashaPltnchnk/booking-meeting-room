@@ -5,7 +5,7 @@ import rootSaga from './sagas'
 import { requestsPromiseMiddleware } from 'redux-saga-requests'
 import thunk from 'redux-thunk';
 import reducer from './reducers/index'
-import { save, load } from "redux-localstorage-simple"
+// import { save, load } from "redux-localstorage-simple"
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -26,7 +26,12 @@ const saga = createSaga()
 */    
 const createStoreWithMiddleware 
     = composeEnhancers(
-        applyMiddleware(thunk, requestsPromiseMiddleware(), saga, logger, save())
+        applyMiddleware(thunk, 
+                        requestsPromiseMiddleware(), 
+                        saga, 
+                        logger, 
+                        // save()
+                        )
     )(createStore)
     
     
@@ -36,7 +41,7 @@ const createStoreWithMiddleware
 */  
 const store = createStoreWithMiddleware(
     reducer,    
-    load() // Loading done here
+    // load() // Loading done here
 )    
 
 // const store = createStore(reducer, composeEnhancers(

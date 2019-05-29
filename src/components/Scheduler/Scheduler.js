@@ -4,22 +4,15 @@ import moment from "moment";
 import events from './events'
 // import ControlSlot from './ControlSlot'
 
-// import "react-big-calendar/lib/css/react-big-calendar.css";
+import "react-big-calendar/lib/css/react-big-calendar.css";
+
+import '../../App.css';
 
 
 
 const localizer = BigCalendar.momentLocalizer(moment);
 
 let allViews = Object.keys(BigCalendar.Views).map(k => BigCalendar.Views[k])
-
-
-
-// 	dayRangeHeaderFormat : ({start, end}, culture, local) => {
-// 		const startMonth = local.format(start, 'MMM', culture),
-// 			endMonth = local.format(end, 'MMM', culture),
-// 			startDate = local.format(start, 'MMM D', culture),
-// 			endDate = local.format(end, startMonth === endMonth ? 'D' : 'MMM D', culture),
-// 			year = local.format(end, 'YYYY', culture);
 
 
 
@@ -57,10 +50,7 @@ class Scheduler extends Component {
 
   render() {
     return (
-      <div>
-          {/* <ControlSlot.Entry waitForOutlet>
-
-          </ControlSlot.Entry> */}
+      <div className={this.props.roomClassName}>
         <BigCalendar
           localizer={localizer}
           defaultDate={new Date()}
@@ -72,7 +62,7 @@ class Scheduler extends Component {
         //   timeslots={7}
         //   min={9}
         //   max={10}
-        // step={60}
+        //   step={60}
 
           formats={formats}
           views={allViews}

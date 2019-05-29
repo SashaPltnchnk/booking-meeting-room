@@ -28,6 +28,7 @@ const layout = (props) => {
                                 // roomName={'Зеленая'} 
                                 // quantity={'5'}  
                                 authPath={'green'} 
+                                roomClassName={'green'}
                                 />} />
             <Route 
                 path='/red' 
@@ -35,6 +36,7 @@ const layout = (props) => {
                                 // roomName={'Красная'} 
                                 // quantity={'15'}  
                                 authPath={'red'} 
+                                roomClassName={'red'}
                                 />} />
             <Route 
                 path='/blue' 
@@ -42,6 +44,7 @@ const layout = (props) => {
                                 // roomName={'Синяя'} 
                                 // quantity={'25'}  
                                 authPath={'blue'} 
+                                roomClassName={'blue'}
                                 />} />
             <Route 
                 path='/violet' 
@@ -49,6 +52,7 @@ const layout = (props) => {
                                 // roomName={'Фиолетовая'} 
                                 // quantity={'25'}  
                                 authPath={'violet'} 
+                                roomClassName={'violet'}
                                 />} />
         </>
      );
