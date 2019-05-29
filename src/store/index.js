@@ -4,7 +4,8 @@ import createSaga from 'redux-saga'
 import rootSaga from './sagas'
 import { requestsPromiseMiddleware } from 'redux-saga-requests'
 import thunk from 'redux-thunk';
-import reducer from './reducers/events'
+import eventsReducer from './reducers/events'
+import authReducer from './reducers/auth'
 // import { save, load } from "redux-localstorage-simple"
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -13,11 +14,10 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const logger = createLogger({diff: true, collapsed: true})
 const saga = createSaga()
 
-// const rootReducer = combineReducers({
-//     contact: contactReducer,
-//     modal: modalReducer,
-//     search: serchReducer
-// });
+const rootReducer = combineReducers({
+    events: eventsReducer,
+    auth: authReducer,
+});
 
 /*
     Saving to LocalStorage is achieved using Redux 
@@ -40,7 +40,7 @@ const createStoreWithMiddleware
     creation of the Redux store.
 */  
 const store = createStoreWithMiddleware(
-    reducer,    
+    rootReducer,    
     // load() // Loading done here
 )    
 

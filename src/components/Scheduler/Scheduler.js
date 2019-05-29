@@ -87,10 +87,10 @@ class Scheduler extends Component {
 
 const mapStateToProps = state => {
     return {
-        events: state.events
+        events: state.events.events
     }
 }
 
-// const mapDispatchToProps = { fetchEventsStart };
+const mapDispatchToProps = { fetchEvents, addEvent };
 
-export default connect(mapStateToProps, {fetchEvents, addEvent})(Scheduler);
+export default connect(mapStateToProps, mapDispatchToProps)(Scheduler);
