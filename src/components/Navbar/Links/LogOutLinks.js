@@ -6,8 +6,8 @@ class LogOutLinks extends Component {
   render() {
     return (
       <div>
-        <button><Link to ='/login'>Log In</Link></button>
-        <button><Link to ='/register'>Register</Link></button>
+        <button><Link to ='/signIn'>Sign In</Link></button>
+        <button><Link to ='/signUp'>Register</Link></button>
       </div>
     )
   }
