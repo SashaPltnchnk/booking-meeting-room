@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import BigCalendar from "react-big-calendar";
 import moment from "moment";
-import events from './events'
-// import ControlSlot from './ControlSlot'
+// import events from './events'
+import { connect } from 'react-redux'
+import { fetchEvents, addEvent } from '../../store/actions/events'
+
+
 
 import "react-big-calendar/lib/css/react-big-calendar.css";
 
-import '../../App.css';
+import '../../App.css'
 
 
 
@@ -22,30 +25,37 @@ const formats = {
     timeGutterFormat: (date, culture, momentLocalizer) => 
       momentLocalizer.format(date, 'hh a', culture),
     eventTimeRangeFormat: (a, culture, momentLocalizer) =>
-      momentLocalizer.format(a.start, 'h:mm a', culture),
-    // dayRangeHeaderFormat: ({ start, end }, culture, localizer) =>
-    //   localizer.format(start, { date: 'short' }, culture) + ' — ' +
-    //   localizer.format(end, { date: 'short' }, culture)
+      momentLocalizer.format(a.start, 'h:mm a', culture)
 }
 
 class Scheduler extends Component { 
   state = {
-    events
+    events: []
   };
+
+  componentDidMount() {
+      console.log(this.props.events)
+      this.setState({
+          event: this.props.events
+      })
+  }
+  
 
   handleSelect = ({ start, end }) => {
     const title = window.prompt('New Event name')
-    if (title)
-      this.setState({
-        events: [
-          ...this.state.events,
-          {
-            start,
-            end,
-            title,
-          },
-        ],
-      })
+    // if (title)
+    //   this.setState({
+    //     events: [
+    //       ...this.props.events,
+    //       {
+    //         start,
+    //         end,
+    //         title,
+    //       },
+    //     ],
+    //   })
+    if (title) 
+    this.props.addEvent(title, start, end)
   }
 
   render() {
@@ -60,16 +70,13 @@ class Scheduler extends Component {
         //   step={8}
         //   step={14}
         //   timeslots={7}
-        //   min={9}
-        //   max={10}
         //   step={60}
-
           formats={formats}
           views={allViews}
           defaultView='work_week'
-          events={this.state.events}
+          events={this.props.events}
           selectable
-          onSelectEvent={event => alert(event.title)}
+          onSelectEvent={event => console.log(event)}
           onSelectSlot={this.handleSelect}
           style={{ height: "80vh", width: "100vw"}}
         />
@@ -78,4 +85,12 @@ class Scheduler extends Component {
   }
 }
 
-export default Scheduler;
+const mapStateToProps = state => {
+    return {
+        events: state.events
+    }
+}
+
+// const mapDispatchToProps = { fetchEventsStart };
+
+export default connect(mapStateToProps, {fetchEvents, addEvent})(Scheduler);

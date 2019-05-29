@@ -4,7 +4,7 @@ import createSaga from 'redux-saga'
 import rootSaga from './sagas'
 import { requestsPromiseMiddleware } from 'redux-saga-requests'
 import thunk from 'redux-thunk';
-import reducer from './reducers/index'
+import reducer from './reducers/events'
 // import { save, load } from "redux-localstorage-simple"
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
