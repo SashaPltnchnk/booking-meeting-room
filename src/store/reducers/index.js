@@ -5,7 +5,10 @@ const initialState = {
 }
 
 const reducer = (state = initialState, action) => {
-    // switch(action.type) {
+    switch(action.type) {
+        case 'USERS': {
+            return {...state, users: [...state.users,{name: 'azazazaz'}]}
+        }
     //     case success(actionTypes.FETCH_CONTACTS):
     //         return {
     //             ...state,
@@ -22,8 +25,8 @@ const reducer = (state = initialState, action) => {
     //     case error(actionTypes.EDIT_CONTACT): 
     //         console.error(action.error.message)
     //         return state;
-    //     default: return state;
-    // }  
+        default: return state;
+    }
 }
 
 export default reducer;

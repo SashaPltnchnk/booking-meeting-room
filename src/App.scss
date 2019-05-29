@@ -1,43 +1,97 @@
-@import 'react-big-calendar/lib/sass/styles.scss';
+
 // @import 'react-big-calendar/lib/sass/variables.scss';
+@import './styles/myvariables.scss';
+// @import 'react-big-calendar/lib/sass/styles.scss';
+
+// @import './variables';
+@import 'react-big-calendar/lib/sass/reset.scss';
 
 
-
-
-a {
-    color: red
+.rbc-calendar {
+  box-sizing: border-box;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 }
-// from variables.scss
 
-// $out-of-range-color: lighten(#333, 40%);
-// $out-of-range-bg-color: lighten(#333, 70%);
+.rbc-calendar *,
+.rbc-calendar *:before,
+.rbc-calendar *:after {
+  box-sizing: inherit;
+}
 
-// $calendar-border: #DDD;
-// $cell-border: #DDD;
+.rbc-abs-full {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
 
-// $border-color: #CCC;
+.rbc-ellipsis {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
-// $segment-width: percentage(1 / 7);
+.rbc-rtl {
+  direction: rtl;
+}
 
-// $time-selection-color: white;
-// $time-selection-bg-color: rgba(0,0,0, .50);
-// $date-selection-bg-color: rgba(0,0,0, .10);
+.rbc-off-range {
+  color: $out-of-range-color;
+}
 
+.rbc-off-range-bg {
+  background: $out-of-range-bg-color;
+}
 
-// $event-bg: red;
-// $event-border: darken(#3174ad, 10%);
-// $event-outline: #3b99fc;
-// $event-color: #fff;
-// $event-border-radius: 5px;
-// $event-padding: 2px 5px;
-// $event-zindex: 4;
+.rbc-header {
+  overflow: hidden;
+  flex: 1 0 0%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0 3px;
+  text-align: center;
+  vertical-align: middle;
+  font-weight: bold;
+  font-size: 90%;
+  min-height: 0;
+  border-bottom: 1px solid $cell-border;
 
-// $btn-color: #373a3c;
-// $btn-bg: #fff;
-// $btn-border: #ccc;
+  & + & {
+    border-left: 1px solid $cell-border;
+  }
 
-$current-time-color: red;
+  .rbc-rtl & + & {
+    border-left-width: 0;
+    border-right: 1px solid $cell-border;
+  }
 
-// $rbc-css-prefix: rbc-i;
+  & > a {
+    &, &:active, &:visited {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+}
 
-// $today-highlight-bg: #eaf6ff;
+.rbc-row-content {
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  z-index: 4;
+}
+
+.rbc-today {
+  background-color: $today-highlight-bg;
+}
+
+@import 'react-big-calendar/lib/sass/toolbar.scss';
+@import 'react-big-calendar/lib/sass/event.scss';
+@import 'react-big-calendar/lib/sass/month.scss';
+@import 'react-big-calendar/lib/sass/agenda.scss';
+@import 'react-big-calendar/lib/sass/time-grid.scss';
