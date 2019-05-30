@@ -5,6 +5,8 @@ const initialState = {
   email: null,
   token: null,
   userId: null,
+  username: null,
+  password: null
 //   err: null,
 //   loading: false,
 };
@@ -15,8 +17,10 @@ const reducer = (state = initialState, action) => {
     case success(actionTypes.REGISTER):
       return {
         ...state,
-        token: action.token,
+        // token: action.token,
         email: action.email,
+        username: action.username,
+        password: action.password,
         // loading: false
       };
     
@@ -24,7 +28,9 @@ const reducer = (state = initialState, action) => {
         return {
             ...state,
             email: action.email,
-            userId: action.userId,
+            username: action.username,
+            password: action.password,
+            // userId: action.userId,
             // loading: false
             };
 
@@ -37,7 +43,7 @@ const reducer = (state = initialState, action) => {
     //     // loading: false
     //   };
 
-    case actionTypes.LOG_OUT:
+    case success(actionTypes.LOG_OUT):
       return {
         ...state,
         token: null,

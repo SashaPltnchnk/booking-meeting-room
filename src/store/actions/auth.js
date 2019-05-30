@@ -5,7 +5,7 @@ export const LOG_OUT = 'LOG_OUT';
 export const register = (data) => ({
     type: REGISTER,
     request: {
-        url: '//signUp',
+        url: '/signUp',
         method: 'POST',
         data
     },

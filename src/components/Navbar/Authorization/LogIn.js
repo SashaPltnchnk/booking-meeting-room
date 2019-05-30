@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { register } from '../../../store/actions/auth'
+import { signIn } from '../../../store/actions/auth'
 // import { Redirect } from "react-router-dom";
 
 
@@ -30,7 +30,7 @@ class Authorization extends Component {
     submitHandler = (e) => {
         const {username, email, password} = this.state.form
         e.preventDefault();
-        this.props.register({username, password, email})
+        this.props.signIn({username, password, email})
             .then((res) => localStorage.setItem('token', res.data.token))
     }
 
@@ -78,14 +78,14 @@ class Authorization extends Component {
     }
 }
 
-// const mapStateToProps = state => {
-//     return {
-//         isSignedUp: state.auth.userId !== null,
-//         isAuthenticated: !!localStorage.getItem("token"),
-//         // err: state.auth.err
-//     }
-// }
+const mapStateToProps = state => {
+    return {
+        isSignedUp: state.auth.userId !== null,
+        isAuthenticated: !!localStorage.getItem("token"),
+        // err: state.auth.err
+    }
+}
 
-const mapDispatchToProps = { register };
+const mapDispatchToProps = { signIn };
  
-export default connect(null, mapDispatchToProps)(Authorization);
+export default connect(mapStateToProps, mapDispatchToProps)(Authorization);
