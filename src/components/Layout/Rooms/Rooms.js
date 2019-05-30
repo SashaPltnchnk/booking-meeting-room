@@ -1,29 +1,47 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchRooms } from '../../../store/actions/room'
+import Room  from './Room'
 
 
 
 class Rooms extends Component {
+    state = {
+        rooms: [],
+        colors: [
+            'red',
+            'blue',
+            'violet',
+            'green'
+        ]
+    }
 
-    componentDidMount() {
-        this.props.fetchRooms()
+    async componentDidMount() {
+        const response = await this.props.fetchRooms();
+        const rooms = response.data.halls;
+        this.setState({rooms})
     }
     
-    render() { 
+    render() {
+        const { rooms } = this.state
         const roomStyle = {
             display: 'flex',
 
             justifyContent: 'space-between',
             marginBottom: '15px'
         }
+        // debugger
+        const renderedRooms = rooms.map((room, id) => (
+            <Room 
+                key={room._id}
+                id={room._id}
+                name={this.state.colors[id]}
+            />
+        ))
         return ( 
             <div  style={roomStyle}>
-                <button><Link to ='/green'>ЗЕЛЁНАЯ</Link></button>
-                <button><Link to ='/red'>КРАСНАЯ</Link></button>
-                <button><Link to ='/blue'>СИНЯЯ</Link></button>
-                <button><Link to ='/violet'>ФИОЛЕТОВАЯ</Link></button>               
+               {renderedRooms }
             </div>
          );
     }

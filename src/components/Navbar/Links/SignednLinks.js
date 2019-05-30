@@ -8,10 +8,11 @@ class LogInLinks extends Component {
   handleLogOut = () => {
     localStorage.clear();
     sessionStorage.clear();
-    this.props.logOut();
+    this.props.logOut()
   }
 
   render() {
+    console.log(this.props)
   
     return (
       <div>

@@ -79,7 +79,7 @@ class Scheduler extends Component {
           selectable
           onSelectEvent={event => console.log(event)}
           onSelectSlot={this.handleSelect}
-          style={{ height: "80vh", width: "100vw"}}
+          style={{ height: "80vh", width: "95vw", margin: "0 auto"}}
           components={{
             event: function({ event }) {
               const { end, start} = event

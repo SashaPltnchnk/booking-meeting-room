@@ -1,5 +1,5 @@
 import * as actionTypes from '../actions/events';
-import moment from "moment";
+// import moment from "moment";
 import { error, success } from 'redux-saga-requests';
 
 const initialState = {

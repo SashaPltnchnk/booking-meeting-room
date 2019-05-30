@@ -32,7 +32,7 @@ class SignIn extends Component {
         e.preventDefault();
         this.props.signIn({username, password, email})
             .then((res) => localStorage.setItem('token', res.data.token))
-            .then(() => this.props.history.goBack())
+            .then(() => this.props.history.push('/red'))
     }
 
     render() { 

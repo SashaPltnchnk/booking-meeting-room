@@ -33,7 +33,7 @@ class Navbar extends Component {
 
 const mapStateToProps = state => {
   return {
-      isAuth: !!localStorage.getItem("token")
+      isAuth: state.auth.isAuth
   }
 }
 

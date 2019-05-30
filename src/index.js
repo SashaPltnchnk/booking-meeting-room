@@ -4,6 +4,11 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import store from './store/index'
+import {} from './store/actions/auth'
+
+// if(localStorage.getItem('token')) {
+    
+// }
 
 const app = (
     <Provider store={store}>

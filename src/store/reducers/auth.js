@@ -6,7 +6,7 @@ const initialState = {
   token: null,
   userId: null,
   username: null,
-  password: null
+  isAuth: false
 //   err: null,
 //   loading: false,
 };
@@ -15,21 +15,22 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
 
     case success(actionTypes.REGISTER):
+      console.log(action)
       return {
         ...state,
         // token: action.token,
-        email: action.email,
-        username: action.username,
-        password: action.password,
+        email: action.data.email,
+        username: action.data.username,
+        isAuth: true
         // loading: false
       };
     
     case success(actionTypes.SIGN_IN):
         return {
             ...state,
-            email: action.email,
-            username: action.username,
-            password: action.password,
+            email: action.data.email,
+            username: action.data.username,
+            isAuth: true
             // userId: action.userId,
             // loading: false
             };
@@ -38,7 +39,8 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         token: null,
-        userId: null
+        userId: null,
+        isAuth: false
       };
 
     default:

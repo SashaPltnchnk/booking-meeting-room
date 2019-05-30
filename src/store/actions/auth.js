@@ -28,11 +28,6 @@ export const signIn = (data) => ({
 
 export const logOut = (data) => ({
     type: LOG_OUT,
-    // request: {
-    //     url: '/signIn',
-    //     method: 'POST',
-    //     data
-    // },
     meta: {
         asPromise: true
     }
