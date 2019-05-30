@@ -26,7 +26,7 @@ export const signIn = (data) => ({
     }
 });
 
-export const logOut = (data) => ({
+export const logOut = () => ({
     type: LOG_OUT,
     meta: {
         asPromise: true

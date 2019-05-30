@@ -6,7 +6,7 @@ const initialState = {
   token: null,
   userId: null,
   username: null,
-  isAuth: false
+  isAuth: !!localStorage.getItem('token')
 //   err: null,
 //   loading: false,
 };
@@ -35,13 +35,13 @@ const reducer = (state = initialState, action) => {
             // loading: false
             };
 
-    case success(actionTypes.LOG_OUT):
-      return {
-        ...state,
-        token: null,
-        userId: null,
-        isAuth: false
-      };
+    case actionTypes.LOG_OUT:
+        return {
+          ...state,
+          token: null,
+          userId: null,
+          isAuth: null
+        };
 
     default:
       return state;

@@ -32,7 +32,7 @@ class Authorization extends Component {
         e.preventDefault();
         this.props.register({username, password, email})
             .then((res) => localStorage.setItem('token', res.data.token))
-            .then(() => this.props.history.push('./red'))
+            .then(() => this.props.history.push('/red'))
     }
 
     render() { 
@@ -74,7 +74,7 @@ class Authorization extends Component {
 
 // const mapStateToProps = state => {
 //     return {
-//         isAuth: !!localStorage.getItem("token"),
+//         isAuth: state.auth.isAuth,
 //     }
 // }
 

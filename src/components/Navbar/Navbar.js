@@ -19,8 +19,9 @@ class Navbar extends Component {
     return (
       <AppBar color="inherit" position="static" >
           <div style={navStyle}>
-            <Link to='/'><Typography variant="h6">Бронирование переговорных залов</Typography></Link>
+            <Link to='/red'><Typography variant="h6">Бронирование переговорных залов</Typography></Link>
                 {
+                    // !!localStorage.getItem('token')
                     isAuth
                     ? <SignedInLinks />
                     : <SignedOutLinks />

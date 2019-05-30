@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { logOut } from '../../../store/actions/auth'
+import { fetchRooms } from '../../../store/actions/room'
 import Button from '@material-ui/core/Button';
+import { withRouter } from 'react-router-dom'
 
 class LogInLinks extends Component {
 
@@ -9,10 +11,13 @@ class LogInLinks extends Component {
     localStorage.clear();
     sessionStorage.clear();
     this.props.logOut()
+    this.props.history.push('/red')
+      // .then(this.props.fetchRooms())
   }
 
   render() {
-    console.log(this.props)
+    // console.log('sokisdfojifsokjidfspokdfspokds',this.props.history.push)
+    // debugger
   
     return (
       <div>
@@ -22,6 +27,6 @@ class LogInLinks extends Component {
   }
 }
 
-const mapDispatchToProps = { logOut };
+const mapDispatchToProps = { logOut, fetchRooms };
 
-export default connect(null, mapDispatchToProps)(LogInLinks)
+export default connect(null, mapDispatchToProps)(withRouter(LogInLinks))
