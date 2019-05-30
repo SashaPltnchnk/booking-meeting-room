@@ -40,14 +40,6 @@ const reducer = (state = initialState, action) => {
                         },
                       ]
             };
-        // case success(actionTypes.EDIT_CONTACT):
-        //     return {
-        //         ...state,
-        //         // contacts: action.data
-        //     };
-        // case error(actionTypes.EDIT_CONTACT): 
-        //     console.error(action.error.message)
-        //     return state;
         default: return state;
     }  
 }

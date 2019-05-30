@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { register } from '../../../store/actions/auth'
-import { Redirect } from "react-router-dom";
+// import { Redirect } from "react-router-dom";
 
 
 class Authorization extends Component {
@@ -36,13 +36,7 @@ class Authorization extends Component {
     }
 
     render() { 
-        // const { isAuth } = this.props;
 
-        // if (isAuth) {
-        //     return (
-        //         <Redirect exact to='/' />
-        //     )
-        // }
         return ( 
             <form onSubmit={this.submitHandler}>
                 <h3>{this.props.buttonName}</h3>
@@ -78,13 +72,12 @@ class Authorization extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        isAuth: !!localStorage.getItem("token"),
-        // err: state.auth.err
-    }
-}
+// const mapStateToProps = state => {
+//     return {
+//         isAuth: !!localStorage.getItem("token"),
+//     }
+// }
 
 const mapDispatchToProps = { register };
  
-export default connect(mapStateToProps, mapDispatchToProps)(Authorization);
+export default connect(null, mapDispatchToProps)(Authorization);

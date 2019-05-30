@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { logOut } from '../../../store/actions/auth'
+import Button from '@material-ui/core/Button';
 
 class LogInLinks extends Component {
 
@@ -14,7 +15,7 @@ class LogInLinks extends Component {
   
     return (
       <div>
-        <button onClick={this.handleLogOut}>Log Out</button>
+        <Button variant="outlined" color="secondary" onClick={this.handleLogOut}>Log Out</Button>
       </div>
     )
   }

@@ -1,7 +1,5 @@
 export const FETCH_EVENTS = 'FETCH_EVENTS';
 export const ADD_EVENT = 'ADD_EVENT';
-// export const DELETE_CONTACT = 'DELETE_CONTACT';
-// export const EDIT_CONTACT = 'EDIT_CONTACT';
 
 
 export const fetchEvents = () => ({
@@ -23,26 +21,3 @@ export const addEvent = (data) => ({
         asPromise: true
     }
 });
-
-// export const deleteContact = (id) => ({
-//     type: DELETE_CONTACT,
-//     request: {
-//         url: `/contacts/${id}`,
-//         method: 'DELETE'
-//     },
-//     meta: {
-//         asPromise: true
-//     }
-// });
-
-// export const editContact = (data, id) => ({
-//     type: EDIT_CONTACT,
-//     request: {
-//         url: `/contacts/${id}`,
-//         method: 'PUT',
-//         data
-//     },
-//     meta: {
-//         asPromise: true
-//     }
-// });

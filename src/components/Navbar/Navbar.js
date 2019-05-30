@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import SignedInLinks from './Links/SignednLinks'
 import SignedOutLinks from './Links/SignedOutLinks'
-import { Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import AppBar from '@material-ui/core/AppBar';
+import Typography from '@material-ui/core/Typography';
 
 
 class Navbar extends Component {
@@ -15,14 +17,16 @@ class Navbar extends Component {
         justifyContent: 'space-around'
     }
     return (
-      <nav style={navStyle}>
-            <Link to='/'>Бронирование переговорных залов</Link>
-            {
-                isAuth
-                ? <SignedInLinks />
-                : <SignedOutLinks />
-            }
-      </nav>
+      <AppBar color="inherit" position="static" >
+          <div style={navStyle}>
+            <Link to='/'><Typography variant="h6">Бронирование переговорных залов</Typography></Link>
+                {
+                    isAuth
+                    ? <SignedInLinks />
+                    : <SignedOutLinks />
+                }
+          </div>
+      </AppBar>
     )
   }
 }

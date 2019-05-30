@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { signIn } from '../../../store/actions/auth'
-import { Redirect } from "react-router-dom";
+// import { Redirect } from "react-router-dom";
 
 
 class SignIn extends Component {
@@ -36,14 +36,7 @@ class SignIn extends Component {
     }
 
     render() { 
-        // const { isAuth } = this.props;
-        console.log(this.props.history)
-
-        // if (isAuth) {
-        //     return (
-        //         <Redirect exact to='/' />
-        //     )
-        // }
+    
         return ( 
             <form onSubmit={this.submitHandler}>
                 <h3>{this.props.buttonName}</h3>
@@ -79,13 +72,12 @@ class SignIn extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        isAuth: !!localStorage.getItem("token"),
-        // err: state.auth.err
-    }
-}
+// const mapStateToProps = state => {
+//     return {
+//         isAuth: !!localStorage.getItem("token"),
+//     }
+// }
 
 const mapDispatchToProps = { signIn };
  
-export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
+export default connect(null, mapDispatchToProps)(SignIn);

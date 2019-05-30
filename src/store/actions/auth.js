@@ -33,9 +33,9 @@ export const logOut = (data) => ({
     //     method: 'POST',
     //     data
     // },
-    // meta: {
-    //     asPromise: true
-    // }
+    meta: {
+        asPromise: true
+    }
 
     //localStorage.clear();
     //sessionStorage.clear();

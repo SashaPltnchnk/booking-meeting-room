@@ -1,18 +1,16 @@
 import React, { Component } from 'react'
-// import Room from './Room'
-// import Scheduler from '../../Scheduler/Scheduler';
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { fetchRooms } from '../../../store/actions/room'
 
 
 
 class Rooms extends Component {
-    // state = {
-    //     isCalendarShown: false
-    // }
 
-    // showCalendar = () => {
-    //     this.setState({isCalendarShown: true})
-    // }
+    componentDidMount() {
+        this.props.fetchRooms()
+    }
+    
     render() { 
         const roomStyle = {
             display: 'flex',
@@ -22,35 +20,21 @@ class Rooms extends Component {
         }
         return ( 
             <div  style={roomStyle}>
-                <button><Link to ='/green'>green</Link></button>
-                <button><Link to ='/red'>red</Link></button>
-                <button><Link to ='/blue'>blue</Link></button>
-                <button><Link to ='/violet'>violet</Link></button>
-                {/* <Room 
-                    roomName={'Зеленая'} 
-                    quantity={'5'} 
-                    // onClick={this.showCalendar}
-                    /> 
-                <Room 
-                    roomName={'Красная'} 
-                    quantity={'15'}
-                    // onClick={this.showCalendar}
-                    />
-                <Room 
-                    roomName={'Синяя'} 
-                    quantity={'25'}
-                    // onClick={this.showCalendar}
-                    /> 
-                <Room 
-                    roomName={'Фиолетовая'} 
-                    quantity={'25'}
-                    // onClick={this.showCalendar}
-                    /> */}
-                    {/* { this.state.isCalendarShown? <Scheduler /> : null } */}
-               
+                <button><Link to ='/green'>ЗЕЛЁНАЯ</Link></button>
+                <button><Link to ='/red'>КРАСНАЯ</Link></button>
+                <button><Link to ='/blue'>СИНЯЯ</Link></button>
+                <button><Link to ='/violet'>ФИОЛЕТОВАЯ</Link></button>               
             </div>
          );
     }
 }
+
+const mapStateToProps = state => {
+    return {
+        rooms: state.room.rooms
+    }
+}
+
+const mapDispatchToProps = { fetchRooms };
  
-export default Rooms;
+export default connect(mapStateToProps, mapDispatchToProps)(Rooms);
