@@ -59,7 +59,14 @@ class Scheduler extends Component {
   }
 
   render() {
-    console.log(this.props.events)
+    // console.warn(this.props.rooms.halls)
+    // debugger
+
+    // const newRoom = this.props.rooms.map(room => (
+    //   <div>ckck</div>
+    // ))
+
+    // console.log(newRoom)
     return (
       <div className={this.props.roomClassName}>
         <BigCalendar
@@ -97,7 +104,8 @@ class Scheduler extends Component {
 
 const mapStateToProps = state => {
     return {
-        events: state.events.events
+        events: state.events.events,
+        rooms: state.room.rooms
     }
 }
 

@@ -29,14 +29,17 @@ class SignIn extends Component {
 
     submitHandler = (e) => {
         const {username, email, password} = this.state.form
+        // const userId = this.props.
         e.preventDefault();
         this.props.signIn({username, password, email})
             .then((res) => localStorage.setItem('token', res.data.token))
             .then(() => this.props.history.push('/red'))
+            // console.log('WArb',this.props.data.res)
+
     }
 
     render() { 
-    
+        // console.log('WArb',this.props.res)
         return ( 
             <form onSubmit={this.submitHandler}>
                 <h3>{this.props.buttonName}</h3>

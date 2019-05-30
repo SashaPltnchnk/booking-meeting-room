@@ -29,6 +29,7 @@ class Authorization extends Component {
 
     submitHandler = (e) => {
         const {username, email, password} = this.state.form
+        // const userId = this.props.
         e.preventDefault();
         this.props.register({username, password, email})
             .then((res) => localStorage.setItem('token', res.data.token))
@@ -36,7 +37,7 @@ class Authorization extends Component {
     }
 
     render() { 
-
+        // console.log('WArb',this.props.response)
         return ( 
             <form onSubmit={this.submitHandler}>
                 <h3>{this.props.buttonName}</h3>

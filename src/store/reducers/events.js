@@ -37,6 +37,7 @@ const reducer = (state = initialState, action) => {
                           start: action.data,
                           end: action.data,
                           title: action.data,
+                          hall_id: "5ce7fd40e7d2fb789aa24eb2"
                         },
                       ]
             };

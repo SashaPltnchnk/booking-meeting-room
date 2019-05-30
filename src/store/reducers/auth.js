@@ -21,7 +21,8 @@ const reducer = (state = initialState, action) => {
         // token: action.token,
         email: action.data.email,
         username: action.data.username,
-        isAuth: true
+        isAuth: true,
+        userId: action.data._id,
         // loading: false
       };
     
@@ -30,8 +31,8 @@ const reducer = (state = initialState, action) => {
             ...state,
             email: action.data.email,
             username: action.data.username,
-            isAuth: true
-            // userId: action.userId,
+            isAuth: true,
+            userId: action.data._id,
             // loading: false
             };
 
