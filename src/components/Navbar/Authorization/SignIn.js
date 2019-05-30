@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { signIn } from '../../../store/actions/auth'
-// import { Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 
-class Authorization extends Component {
+class SignIn extends Component {
     state = { 
         form: {
             username: '',
@@ -35,14 +35,14 @@ class Authorization extends Component {
     }
 
     render() { 
-        const { isAuthenticated, err } = this.props;
+        const { isAuth, err } = this.props;
         console.log(this.props)
 
-        // if (isAuthenticated) {
-        // return (
-        //     <Redirect exact to='/' />
-        // )
-        // }
+        if (isAuth) {
+        return (
+            <Redirect exact to='/' />
+        )
+        }
         return ( 
             <form onSubmit={this.submitHandler}>
                 <h3>{this.props.buttonName}</h3>
@@ -80,12 +80,11 @@ class Authorization extends Component {
 
 const mapStateToProps = state => {
     return {
-        isSignedUp: state.auth.userId !== null,
-        isAuthenticated: !!localStorage.getItem("token"),
+        isAuth: !!localStorage.getItem("token"),
         // err: state.auth.err
     }
 }
 
 const mapDispatchToProps = { signIn };
  
-export default connect(mapStateToProps, mapDispatchToProps)(Authorization);
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

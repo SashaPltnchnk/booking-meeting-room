@@ -34,15 +34,6 @@ const reducer = (state = initialState, action) => {
             // loading: false
             };
 
-    
-
-    // case actionTypes.AUTH_FAIL:
-    //   return {
-    //     ...state,
-    //     err: action.err,
-    //     // loading: false
-    //   };
-
     case success(actionTypes.LOG_OUT):
       return {
         ...state,

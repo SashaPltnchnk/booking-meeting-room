@@ -1,24 +1,36 @@
 import React, { Component } from 'react'
-import LogInLinks from './Links/LogInLinks'
-import LogOutLinks from './Links/LogOutLinks'
-import { Link } from 'react-router-dom'
+import SignedInLinks from './Links/LogInLinks'
+import SignedOutLinks from './Links/LogOutLinks'
+import { Link, Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 
 class Navbar extends Component {
 
   render() {
-      const navStyle = {
-          display: 'flex',
-          justifyContent: 'space-around'
-      }
+    const { isAuth } = this.props;
+
+    const navStyle = {
+        display: 'flex',
+        justifyContent: 'space-around'
+    }
     return (
       <nav style={navStyle}>
             <Link to='/'>Бронирование переговорных залов</Link>
-            <LogOutLinks />
-            <LogInLinks />
+            {
+                isAuth
+                ? <SignedInLinks />
+                : <SignedOutLinks />
+            }
       </nav>
     )
   }
 }
 
-export default Navbar
+const mapStateToProps = state => {
+  return {
+      isAuth: !!localStorage.getItem("token")
+  }
+}
+
+export default connect(mapStateToProps)(Navbar)

@@ -4,22 +4,21 @@ import { logOut } from '../../../store/actions/auth'
 
 class LogInLinks extends Component {
 
+  handleLogOut = () => {
+    localStorage.clear();
+    sessionStorage.clear();
+    this.props.logOut();
+  }
+
   render() {
-    // const token = localStorage.getItem("token");
-    // const email = localStorage.getItem("email");
+  
     return (
       <div>
-        <button onClick={this.props.logOut}>Log Out</button>
+        <button onClick={this.handleLogOut}>Log Out</button>
       </div>
     )
   }
 }
-
-// const mapStateToProps = state => {
-//   return {
-//       token: state.auth.token
-//   }
-// }
 
 const mapDispatchToProps = { logOut};
 

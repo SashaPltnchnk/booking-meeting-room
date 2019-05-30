@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
 import Authorization from '../Navbar/Authorization/Authorization'
-import LogIn from '../Navbar/Authorization/LogIn'
+import SignIn from '../Navbar/Authorization/SignIn'
 import Scheduler from '../Scheduler/Scheduler'
 import Rooms from './Rooms/Rooms'
 
@@ -10,7 +10,7 @@ const layout = (props) => {
         <>
             <Route 
                 path='/signIn' 
-                render={() => <LogIn
+                render={() => <SignIn
                                 buttonName={'Sign In'} 
                                 authPath={'signIn'} 
                                 />} 

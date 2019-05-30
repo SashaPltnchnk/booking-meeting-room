@@ -35,7 +35,7 @@ class Authorization extends Component {
     }
 
     render() { 
-        const { isAuthenticated, err } = this.props;
+        // const { isAuthenticated, err } = this.props;
         console.log(this.props)
 
         // if (isAuthenticated) {

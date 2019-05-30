@@ -34,7 +34,7 @@ class Scheduler extends Component {
   };
 
   componentDidMount() {
-      console.log(this.props.events)
+      // console.log(this.props.events)
       this.setState({
           event: this.props.events
       })
