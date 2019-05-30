@@ -32,17 +32,18 @@ class SignIn extends Component {
         e.preventDefault();
         this.props.signIn({username, password, email})
             .then((res) => localStorage.setItem('token', res.data.token))
+            .then(() => this.props.history.goBack())
     }
 
     render() { 
-        const { isAuth, err } = this.props;
-        console.log(this.props)
+        // const { isAuth } = this.props;
+        console.log(this.props.history)
 
-        if (isAuth) {
-        return (
-            <Redirect exact to='/' />
-        )
-        }
+        // if (isAuth) {
+        //     return (
+        //         <Redirect exact to='/' />
+        //     )
+        // }
         return ( 
             <form onSubmit={this.submitHandler}>
                 <h3>{this.props.buttonName}</h3>

@@ -20,6 +20,6 @@ class LogInLinks extends Component {
   }
 }
 
-const mapDispatchToProps = { logOut};
+const mapDispatchToProps = { logOut };
 
 export default connect(null, mapDispatchToProps)(LogInLinks)

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { register } from '../../../store/actions/auth'
-// import { Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 
 class Authorization extends Component {
@@ -32,16 +32,16 @@ class Authorization extends Component {
         e.preventDefault();
         this.props.register({username, password, email})
             .then((res) => localStorage.setItem('token', res.data.token))
+            .then(() => this.props.history.goBack())
     }
 
     render() { 
-        // const { isAuthenticated, err } = this.props;
-        console.log(this.props)
+        // const { isAuth } = this.props;
 
-        // if (isAuthenticated) {
-        // return (
-        //     <Redirect exact to='/' />
-        // )
+        // if (isAuth) {
+        //     return (
+        //         <Redirect exact to='/' />
+        //     )
         // }
         return ( 
             <form onSubmit={this.submitHandler}>
@@ -78,14 +78,13 @@ class Authorization extends Component {
     }
 }
 
-// const mapStateToProps = state => {
-//     return {
-//         isSignedUp: state.auth.userId !== null,
-//         isAuthenticated: !!localStorage.getItem("token"),
-//         // err: state.auth.err
-//     }
-// }
+const mapStateToProps = state => {
+    return {
+        isAuth: !!localStorage.getItem("token"),
+        // err: state.auth.err
+    }
+}
 
 const mapDispatchToProps = { register };
  
-export default connect(null, mapDispatchToProps)(Authorization);
+export default connect(mapStateToProps, mapDispatchToProps)(Authorization);

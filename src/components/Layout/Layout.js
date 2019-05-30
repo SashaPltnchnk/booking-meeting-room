@@ -10,16 +10,18 @@ const layout = (props) => {
         <>
             <Route 
                 path='/signIn' 
-                render={() => <SignIn
+                render={(props) => <SignIn
                                 buttonName={'Sign In'} 
                                 authPath={'signIn'} 
+                                {...props}
                                 />} 
             />
             <Route 
                 path='/signUp' 
-                render={() => <Authorization 
+                render={(props) => <Authorization 
                                 buttonName={'Register'} 
                                 authPath={'signUp'} 
+                                {...props}
                                 />} 
             />
             <Rooms />

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import SignedInLinks from './Links/LogInLinks'
-import SignedOutLinks from './Links/LogOutLinks'
+import SignedInLinks from './Links/SignednLinks'
+import SignedOutLinks from './Links/SignedOutLinks'
 import { Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 
