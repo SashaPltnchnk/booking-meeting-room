@@ -10,9 +10,10 @@ const reducer = (state = initialState, action) => {
     switch(action.type) {
         case success(actionTypes.FETCH_ROOMS):
                 console.warn(action.data.halls)
+                
             return {
                 ...state,
-                rooms: action.data,
+                rooms: action.data.halls,
                 // roomId: action.data.
             };
         case error(actionTypes.FETCH_ROOMS): 

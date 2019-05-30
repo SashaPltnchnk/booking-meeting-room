@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import BigCalendar from "react-big-calendar";
 import moment from "moment";
-// import events from './events'
 import { connect } from 'react-redux'
 import { fetchEvents, addEvent } from '../../store/actions/events'
 
@@ -29,44 +28,35 @@ const formats = {
 }
 
 class Scheduler extends Component { 
-  state = {
-    events: []
-  };
 
   componentDidMount() {
-      // console.log(this.props.events)
-      this.setState({
-          event: this.props.events
-      })
+      this.props.fetchEvents(this.props.match.params.roomId)
   }
-  
 
-  handleSelect = ({ start, end }) => {
+  handleSelect = (slot) => {
     const title = window.prompt('New Event name')
-    // if (title)
-    //   this.setState({
-    //     events: [
-    //       ...this.props.events,
-    //       {
-    //         start,
-    //         end,
-    //         title,
-    //       },
-    //     ],
-    //   })
-    if (title) 
-    this.props.addEvent({title, start, end})
+    console.warn(this.props.match.params.roomId);
+
+    const dataToSend = {
+      from: new Date(slot.start).getTime(),
+      to: new Date(slot.end).getTime(),
+      hall_id: this.props.match.params.roomId,
+      user_id: localStorage.getItem('user_id'),
+      title,
+    }
+
+    
+    this.props.addEvent(dataToSend)
+      .then(this.props.fetchEvents)
   }
 
   render() {
     // console.warn(this.props.rooms.halls)
     // debugger
 
-    // const newRoom = this.props.rooms.map(room => (
-    //   <div>ckck</div>
-    // ))
+    const newEvents = this.props.events.filter(event => this.props.match.params.roomId === event.hall_id)
 
-    // console.log(newRoom)
+    console.log(newEvents)
     return (
       <div className={this.props.roomClassName}>
         <BigCalendar
@@ -74,28 +64,14 @@ class Scheduler extends Component {
           defaultDate={new Date()}
           min={moment('9:00am', 'h:mma').toDate()}
           max={moment('6:00pm', 'h:mma').toDate()}
-        //   timeslots={0}
-        //   step={8}
-        //   step={14}
-        //   timeslots={7}
-        //   step={60}
           formats={formats}
           views={allViews}
           defaultView='work_week'
-          events={this.props.events}
+          events={newEvents}
           selectable
-          onSelectEvent={event => console.log(event)}
+          onSelectEvent={this.handleSelect}
           onSelectSlot={this.handleSelect}
           style={{ height: "80vh", width: "95vw", margin: "0 auto"}}
-          components={{
-            event: function({ event }) {
-              const { end, start} = event
-
-              return (
-                <div>ASDASDSA</div>
-              )
-            }
-          }}
         />
       </div>
     );

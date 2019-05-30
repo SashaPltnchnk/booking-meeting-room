@@ -31,8 +31,13 @@ class SignIn extends Component {
         const {username, email, password} = this.state.form
         // const userId = this.props.
         e.preventDefault();
+        // debugger
         this.props.signIn({username, password, email})
-            .then((res) => localStorage.setItem('token', res.data.token))
+            .then((res) => {
+                // debugger
+                localStorage.setItem('token', res.data.token)
+                localStorage.setItem('user_id', res.data._id)
+            })
             .then(() => this.props.history.push('/red'))
             // console.log('WArb',this.props.data.res)
 

@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 // import Sheduler from '../../Scheduler/Scheduler'
 // import Scheduler from '../../Scheduler/Scheduler';
 import { Link } from 'react-router-dom'
+import Button from '@material-ui/core/Button';
 
 
 
@@ -20,9 +21,9 @@ class Room extends Component {
         // }
         return ( 
             <>
-                <button>
-                    <Link to ={`/${this.props.name}`}>{this.props.name}</Link>           
-                </button>
+                <Link to ={`/room/${this.props.id}`}>
+                    <Button variant="outlined" color="secondary">{this.props.name}</Button>
+                </Link>           
             </>
          );
     }

@@ -25,38 +25,7 @@ const layout = (props) => {
                                 />} 
             />
             <Rooms />
-            <Route 
-                path='/green' 
-                render={() => <Scheduler 
-                                // roomName={'Зеленая'} 
-                                // quantity={'5'}  
-                                authPath={'green'} 
-                                roomClassName={'green'}
-                                />} />
-            <Route 
-                path='/red' 
-                render={() => <Scheduler 
-                                // roomName={'Красная'} 
-                                // quantity={'15'}  
-                                authPath={'red'} 
-                                roomClassName={'red'}
-                                />} />
-            <Route 
-                path='/blue' 
-                render={() => <Scheduler 
-                                // roomName={'Синяя'} 
-                                // quantity={'25'}  
-                                authPath={'blue'} 
-                                roomClassName={'blue'}
-                                />} />
-            <Route 
-                path='/violet' 
-                render={() => <Scheduler 
-                                // roomName={'Фиолетовая'} 
-                                // quantity={'25'}  
-                                authPath={'violet'} 
-                                roomClassName={'violet'}
-                                />} />
+            <Route path='/room/:roomId' component={Scheduler}/>
         </>
      );
 }

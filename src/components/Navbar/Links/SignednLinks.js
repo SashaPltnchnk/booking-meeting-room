@@ -12,7 +12,7 @@ class LogInLinks extends Component {
     sessionStorage.clear();
     this.props.logOut()
     this.props.history.push('/red')
-      // .then(this.props.fetchRooms())
+    // .then(this.props.fetchRooms())
   }
 
   render() {

@@ -5,7 +5,7 @@ export const ADD_EVENT = 'ADD_EVENT';
 export const fetchEvents = () => ({
     type: FETCH_EVENTS,
     request: {
-        url: '/tickets',
+        url: '/tickets/',
         method: 'GET'
     }
 });

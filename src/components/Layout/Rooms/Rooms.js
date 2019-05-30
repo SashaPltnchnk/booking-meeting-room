@@ -8,7 +8,7 @@ import Room  from './Room'
 
 class Rooms extends Component {
     state = {
-        rooms: [],
+        // rooms: [],
         colors: [
             'red',
             'blue',
@@ -18,16 +18,17 @@ class Rooms extends Component {
     }
 
     async componentDidMount() {
-        const response = await this.props.fetchRooms();
-        const rooms = response.data.halls;
-        this.setState({rooms})
+        this.props.fetchRooms();
+        // const rooms = response.data.halls;
+        // this.setState({rooms})
     }
     
     render() {
-        const { rooms } = this.state
+        const { rooms } = this.props
+        console.warn(rooms);
+        
         const roomStyle = {
             display: 'flex',
-
             justifyContent: 'space-between',
             marginBottom: '15px'
         }
@@ -36,7 +37,7 @@ class Rooms extends Component {
             <Room 
                 key={room._id}
                 id={room._id}
-                name={this.state.colors[id]}
+                name={room.title}
             />
         ))
         return ( 
@@ -48,6 +49,7 @@ class Rooms extends Component {
 }
 
 const mapStateToProps = state => {
+    
     return {
         rooms: state.room.rooms
     }
