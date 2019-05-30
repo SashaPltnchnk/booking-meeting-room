@@ -4,11 +4,16 @@ import { error, success } from 'redux-saga-requests';
 
 const initialState = {
     events: [
+        // {
+        //     title: 'straday everyday',
+        //     start: moment().toDate(),
+        //     end: moment().toDate(),
+        //     allDay: true
+        // }
         {
-            title: 'straday everyday',
-            start: moment().toDate(),
-            end: moment().toDate(),
-            allDay: true
+            title: 'AZAZAZ',
+            start: new Date(2019, 5, 28, 9, 0, 0),
+            end: new Date(2019, 5, 28, 10, 0, 0),
         }
     ]
 }

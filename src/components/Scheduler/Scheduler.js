@@ -55,10 +55,11 @@ class Scheduler extends Component {
     //     ],
     //   })
     if (title) 
-    this.props.addEvent(title, start, end)
+    this.props.addEvent({title, start, end})
   }
 
   render() {
+    console.log(this.props.events)
     return (
       <div className={this.props.roomClassName}>
         <BigCalendar
@@ -79,6 +80,15 @@ class Scheduler extends Component {
           onSelectEvent={event => console.log(event)}
           onSelectSlot={this.handleSelect}
           style={{ height: "80vh", width: "100vw"}}
+          components={{
+            event: function({ event }) {
+              const { end, start} = event
+
+              return (
+                <div>ASDASDSA</div>
+              )
+            }
+          }}
         />
       </div>
     );
