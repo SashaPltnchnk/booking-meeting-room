@@ -11,8 +11,7 @@ class LogInLinks extends Component {
     localStorage.clear();
     sessionStorage.clear();
     this.props.logOut()
-    this.props.history.push('/red')
-    // .then(this.props.fetchRooms())
+    this.props.history.push('/room/:roomId')
   }
 
   render() {

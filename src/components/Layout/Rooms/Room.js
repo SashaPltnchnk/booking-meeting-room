@@ -1,7 +1,4 @@
 import React, { Component } from 'react'
-// import Time from './Time'
-// import Sheduler from '../../Scheduler/Scheduler'
-// import Scheduler from '../../Scheduler/Scheduler';
 import { Link } from 'react-router-dom'
 import Button from '@material-ui/core/Button';
 
@@ -20,11 +17,11 @@ class Room extends Component {
         //     justifyContent: 'center'
         // }
         return ( 
-            <>
+            <div className={this.props.colorName}>
                 <Link to ={`/room/${this.props.id}`}>
-                    <Button variant="outlined" color="secondary">{this.props.name}</Button>
+                    <Button variant="outlined" color="secondary">{this.props.colorName}</Button>
                 </Link>           
-            </>
+            </div>
          );
     }
 }

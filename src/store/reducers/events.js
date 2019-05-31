@@ -1,5 +1,4 @@
 import * as actionTypes from '../actions/events';
-// import moment from "moment";
 import { error, success } from 'redux-saga-requests';
 
 const convert = event => {
@@ -11,11 +10,11 @@ const convert = event => {
 }
 const initialState = {
     events: [
-        {
-            title: 'AZAZAZ',
-            start: new Date(2019, 4, 29, 0, 0, 0),
-            end: new Date(2019, 4, 29, 23, 0, 0),
-        }
+        // {
+        //     title: 'AZAZAZ',
+        //     start: new Date(2019, 4, 29, 0, 0, 0),
+        //     end: new Date(2019, 4, 29, 23, 0, 0),
+        // }
     ]
 }
 
@@ -34,11 +33,14 @@ const reducer = (state = initialState, action) => {
                 ...state,
                events: [
                    ...state.events,
-                   convert(action.data),
-                //    start: new Date(action.data.from),
-                //    end: new Date(action.data.to),
+                   convert(action.data)
                ]
             };
+        // case actionTypes.DELETE_EVENT:
+        //         return {
+        //             ...state,
+        //             events: action.data.map(convert)
+        //         };
             
         default: return state;
     }  

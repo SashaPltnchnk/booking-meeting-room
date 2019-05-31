@@ -9,7 +9,7 @@ const initialState = {
 const reducer = (state = initialState, action) => {
     switch(action.type) {
         case success(actionTypes.FETCH_ROOMS):
-                console.warn(action.data.halls)
+                // console.warn(action.data.halls)
                 
             return {
                 ...state,

@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import BigCalendar from "react-big-calendar";
 import moment from "moment";
 import { connect } from 'react-redux'
-import { fetchEvents, addEvent } from '../../store/actions/events'
+import { fetchEvents, addEvent, deleteEvent } from '../../store/actions/events'
+
 
 
 
@@ -27,6 +28,8 @@ const formats = {
       momentLocalizer.format(a.start, 'h:mm a', culture)
 }
 
+
+
 class Scheduler extends Component { 
 
   componentDidMount() {
@@ -35,7 +38,7 @@ class Scheduler extends Component {
 
   handleSelect = (slot) => {
     const title = window.prompt('New Event name')
-    console.warn(this.props.match.params.roomId);
+    // console.warn(this.props.match.params.roomId);
 
     const dataToSend = {
       from: new Date(slot.start).getTime(),
@@ -45,17 +48,25 @@ class Scheduler extends Component {
       title,
     }
 
-    
     this.props.addEvent(dataToSend)
   }
 
+  
+
+  handleDeleteEvent = async (id) => {
+    const {deleteEvent, fetchEvents} = this.props;
+  
+    await deleteEvent(id)
+    fetchEvents();
+  }
+
   render() {
-    // console.warn(this.props.rooms.halls)
     // debugger
+   
 
     const newEvents = this.props.events.filter(event => this.props.match.params.roomId === event.hall_id)
-
-    console.log(newEvents)
+    
+  
     return (
       <div className={this.props.roomClassName}>
         <BigCalendar
@@ -68,7 +79,7 @@ class Scheduler extends Component {
           defaultView='work_week'
           events={newEvents}
           selectable
-          onSelectEvent={this.handleSelect}
+          onSelectEvent={(event) => this.handleDeleteEvent(event._id)} 
           onSelectSlot={this.handleSelect}
           style={{ height: "80vh", width: "95vw", margin: "0 auto"}}
         />
@@ -84,6 +95,6 @@ const mapStateToProps = state => {
     }
 }
 
-const mapDispatchToProps = { fetchEvents, addEvent };
+const mapDispatchToProps = { fetchEvents, addEvent, deleteEvent };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Scheduler);

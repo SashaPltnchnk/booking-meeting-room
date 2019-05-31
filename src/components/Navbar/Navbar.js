@@ -19,7 +19,7 @@ class Navbar extends Component {
     return (
       <AppBar color="inherit" position="static" >
           <div style={navStyle}>
-            <Link to='/red'><Typography variant="h6">Бронирование переговорных залов</Typography></Link>
+            <Link to='/room/:roomId'><Typography variant="h6">Бронирование переговорных залов</Typography></Link>
                 {
                     // !!localStorage.getItem('token')
                     isAuth

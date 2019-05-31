@@ -5,7 +5,7 @@ import SignIn from '../Navbar/Authorization/SignIn'
 import Scheduler from '../Scheduler/Scheduler'
 import Rooms from './Rooms/Rooms'
 
-const layout = (props) => {
+const layout = () => {
     return ( 
         <>
             <Route 

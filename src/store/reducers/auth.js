@@ -6,8 +6,8 @@ const initialState = {
   token: null,
   userId: null,
   username: null,
-  isAuth: !!localStorage.getItem('token')
-//   err: null,
+  isAuth: !!localStorage.getItem('token'),
+  err: null,
 //   loading: false,
 };
 
@@ -15,7 +15,7 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
 
     case success(actionTypes.REGISTER):
-      console.log(action)
+      // console.log(action)
       return {
         ...state,
         // token: action.token,
@@ -25,6 +25,13 @@ const reducer = (state = initialState, action) => {
         userId: action.data._id,
         // loading: false
       };
+
+    case error(actionTypes.REGISTER):
+      // console.warn(action.error.response.data.message)
+      return {
+        ...state,
+        err: action.error
+      }
     
     case success(actionTypes.SIGN_IN):
         return {
@@ -35,6 +42,12 @@ const reducer = (state = initialState, action) => {
             userId: action.data._id,
             // loading: false
             };
+    case error(actionTypes.SIGN_IN):
+        // console.warn(action.error.response.data.message)
+        return {
+          ...state,
+          err: action.error.response.data.message
+        }
 
     case actionTypes.LOG_OUT:
         return {
