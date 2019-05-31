@@ -23,7 +23,6 @@ const inputs = [
 const formAuth = props => {
     return ( 
         <form onSubmit={props.submitHandler}>
-
             {inputs.map(input => {
                 // debugger
                 return (

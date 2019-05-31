@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 
 
 
@@ -18,9 +19,14 @@ class Room extends Component {
         // }
         return ( 
             <div>
-                <Link to ={`/room/${this.props.id}`}>
+                
+                <NavLink 
+                    to ={`/room/${this.props.id}`}
+                    // activeClassName={this.props.colorName}
+                    >
                     <Button variant="outlined" color="secondary">{this.props.colorName}</Button>
-                </Link>           
+                </NavLink>         
+                {/* <Typography variant="h6">{this.props.colorName}</Typography>   */}
             </div>
          );
     }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { signIn } from '../../../store/actions/auth'
-import Form from './Auth'
+import Form from './FormAuth'
 
 
 class SignIn extends Component {
@@ -41,8 +41,11 @@ class SignIn extends Component {
 
     render() { 
         // console.log('WArb',this.props.res)
+
+        let showError  = this.props.error ? <div>{this.props.error}</div> : null
         return ( 
-            <>
+            <>  
+                {showError}
                 <h3>{this.props.buttonName}</h3>
                 <Form 
                     changeHandler={this.changeHandler}
@@ -55,7 +58,13 @@ class SignIn extends Component {
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        error: state.auth.err
+    }
+}
+
 
 const mapDispatchToProps = { signIn };
  
-export default connect(null, mapDispatchToProps)(SignIn);
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

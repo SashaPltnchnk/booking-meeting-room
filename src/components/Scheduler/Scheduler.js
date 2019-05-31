@@ -3,7 +3,7 @@ import BigCalendar from "react-big-calendar";
 import moment from "moment";
 import { connect } from 'react-redux'
 import { fetchEvents, addEvent, deleteEvent } from '../../store/actions/events'
-import { withRouter } from 'react-router-dom'
+// import { withRouter } from 'react-router-dom'
 
 
 
@@ -100,4 +100,4 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = { fetchEvents, addEvent, deleteEvent };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Scheduler));
+export default connect(mapStateToProps, mapDispatchToProps)(Scheduler);
