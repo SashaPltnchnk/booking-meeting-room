@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { register } from '../../../store/actions/auth'
 import Form from './FormAuth'
+import { Header, Message } from 'semantic-ui-react'
 
 
 class Authorization extends Component {
@@ -42,12 +43,16 @@ class Authorization extends Component {
     render() { 
         // console.log('WArb',this.props.response)
 
-        let showError  = this.props.error ? <div>{this.props.error}</div> : null
+        let showError  = this.props.error 
+            ? <Message warning>
+                <Message.Header>{this.props.error}</Message.Header>
+                </Message> 
+            : null
         return ( 
 
             <>
                 {showError}
-                <h3>{this.props.buttonName}</h3>
+                <Header size='large' color='green'>{this.props.buttonName}</Header>
                 <Form 
                     changeHandler={this.changeHandler}
                     submitHandler={this.submitHandler}

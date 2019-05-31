@@ -7,21 +7,13 @@ import Room  from './Room'
 
 
 class Rooms extends Component {
-    state = {
-        colors: [
-            'green',
-            'red',
-            'blue',
-            'violet'
-        ]
-    }
 
     async componentDidMount() {
         this.props.fetchRooms();
     }
     
     render() {
-        const { rooms } = this.props
+        const { rooms, colors, setColor } = this.props
         // console.warn(rooms);
         
         const roomStyle = {
@@ -35,7 +27,8 @@ class Rooms extends Component {
                 key={room._id}
                 id={room._id}
                 // name={room.title}
-                colorName={this.state.colors[id]}
+                colorName={colors[id]}
+                setColor={setColor}
             />
         ))
         return ( 

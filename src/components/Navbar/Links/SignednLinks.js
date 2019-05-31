@@ -2,9 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { logOut } from '../../../store/actions/auth'
 import { fetchRooms } from '../../../store/actions/room'
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 import { withRouter } from 'react-router-dom'
+import { Button } from 'semantic-ui-react'
 
 class LogInLinks extends Component {
 
@@ -21,8 +20,7 @@ class LogInLinks extends Component {
   
     return (
       <div>
-        <Typography variant="h4">{this.props.user}</Typography>
-        <Button variant="outlined" color="secondary" onClick={this.handleLogOut}>Log Out</Button>
+        <Button color='black' onClick={this.handleLogOut}>Log Out</Button>
       </div>
     )
   }

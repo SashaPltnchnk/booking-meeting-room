@@ -12,6 +12,7 @@ import { fetchEvents, addEvent, deleteEvent } from '../../store/actions/events'
 import "react-big-calendar/lib/css/react-big-calendar.css";
 
 import '../../App.css'
+import Rooms from "../Layout/Rooms/Rooms";
 
 
 
@@ -33,6 +34,15 @@ const formats = {
 
 
 class Scheduler extends Component { 
+  state = {
+    colors: [
+        'green',
+        'red',
+        'blue',
+        'violet'
+    ],
+    currentColor: ''
+  }
 
   componentDidMount() {
       this.props.fetchEvents(this.props.match.params.roomId)
@@ -62,6 +72,11 @@ class Scheduler extends Component {
     fetchEvents();
   }
 
+  setColor = (currentColor) => () => {
+    console.log(currentColor)
+    this.setState({currentColor})
+  }
+
   render() {
     // debugger
     // console.warn('sokisdfojifsokjidfspokdfspokds',this.props)
@@ -71,7 +86,9 @@ class Scheduler extends Component {
     
   
     return (
-      <div className={this.props.roomClassName}>
+      <>
+      <Rooms colors={this.state.colors} setColor={this.setColor} />
+      <div className={this.state.currentColor}>
         <BigCalendar
           localizer={localizer}
           defaultDate={new Date()}
@@ -84,9 +101,10 @@ class Scheduler extends Component {
           selectable
           onSelectEvent={(event) => this.handleDeleteEvent(event._id)} 
           onSelectSlot={this.handleSelect}
-          style={{ height: "80vh", width: "95vw", margin: "0 auto"}}
+          style={{ height: "80vh", width: "85vw", margin: "0 auto"}}
         />
       </div>
+      </>
     );
   }
 }

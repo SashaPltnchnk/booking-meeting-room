@@ -1,20 +1,21 @@
 import React from 'react'
+import { Button,  Form } from 'semantic-ui-react'
 
 
 const inputs = [
     {
         name: 'username',
-        placeholder: 'username',
+        placeholder: 'Username',
         type: 'text'
     },
     {
         name: 'email',
-        placeholder: 'email',
+        placeholder: 'Email',
         type: 'email'
     },
     {
         name: 'password',
-        placeholder: 'password',
+        placeholder: 'Password',
         type: 'password'
     }
 ]
@@ -22,25 +23,28 @@ const inputs = [
 
 const formAuth = props => {
     return ( 
-        <form onSubmit={props.submitHandler}>
+        <Form onSubmit={props.submitHandler}>
             {inputs.map(input => {
                 // debugger
                 return (
-                    <input 
-                        key={input.name}
-                        placeholder={input.placeholder} 
-                        name={input.name} 
-                        value={props.form[input.name]} 
-                        onChange={props.changeHandler} 
-                        type={input.type}
-                    />
+                    <Form.Field key={input.name}>
+                        <label>{input.placeholder}</label>
+                            <input 
+                            placeholder={input.placeholder} 
+                            name={input.name} 
+                            value={props.form[input.name]} 
+                            onChange={props.changeHandler} 
+                            type={input.type}
+                        />
+                    </Form.Field>
+                    
                     )
                 })}
 
             <div>
-                <button>{props.buttonName}</button>
+                <Button inverted color='green'>{props.buttonName}</Button>
             </div>
-        </form>      
+        </Form>      
      );
   };
   

@@ -26,7 +26,9 @@
     "redux-saga": "^1.0.2",
     "redux-saga-requests": "^0.24.1",
     "redux-saga-requests-axios": "^0.7.6",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^0.87.1"
   },
   "scripts": {
     "start": "react-scripts start",

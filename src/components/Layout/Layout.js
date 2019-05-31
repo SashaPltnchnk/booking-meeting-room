@@ -1,11 +1,20 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
+import {connect} from 'react-redux'
+import { Route, withRouter, Redirect } from 'react-router-dom'
 import Authorization from '../Navbar/Authorization/Registration'
 import SignIn from '../Navbar/Authorization/SignIn'
 import Scheduler from '../Scheduler/Scheduler'
 import Rooms from './Rooms/Rooms'
 
-const layout = () => {
+const layout = (props) => {
+    const PrivateRoute = ({ component: Component, ...rest }) => (
+        <Route {...rest} render={({isAuth}) => (
+            isAuth === true
+            ? <Component {...props} />
+            : <Redirect to='/signIn' />
+        )} />
+      )
+    // console.warn(props.location.pathname)
     return ( 
         <>
             <Route 
@@ -24,12 +33,14 @@ const layout = () => {
                                 {...props}
                                 />} 
             />
-            <Rooms />
-            <Route path='/room/:roomId' component={Scheduler}/>
+            {/* { !props.location.pathname === "/signIn" && "/signUp" ? <Rooms /> : null} */}
+            <Route path='/room/:roomId' component={Scheduler} isAuth={props.isAuth}/>
         </>
      );
 }
 
+const mapStateToProps = store => ({
+    isAuth: store.auth.isAuth
+})
 
-
-export default layout;
+export default connect(mapStateToProps)(layout);

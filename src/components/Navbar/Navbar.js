@@ -3,8 +3,8 @@ import SignedInLinks from './Links/SignednLinks'
 import SignedOutLinks from './Links/SignedOutLinks'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import AppBar from '@material-ui/core/AppBar';
-import Typography from '@material-ui/core/Typography';
+import { Header } from 'semantic-ui-react'
+
 
 
 class Navbar extends Component {
@@ -17,9 +17,9 @@ class Navbar extends Component {
         justifyContent: 'space-around'
     }
     return (
-      <AppBar color="inherit" position="static" >
+      <Header as='h3' dividing>
           <div style={navStyle}>
-            <Link to='/room/:roomId'><Typography variant="h6">Бронирование переговорных залов</Typography></Link>
+            <Link to='/room/:roomId'><Header size='medium' color='grey'>Бронирование переговорных комнат</Header></Link>
                 {
                     // !!localStorage.getItem('token')
                     isAuth
@@ -27,7 +27,7 @@ class Navbar extends Component {
                     : <SignedOutLinks />
                 }
           </div>
-      </AppBar>
+      </Header>
     )
   }
 }

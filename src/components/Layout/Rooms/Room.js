@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
+import { Button } from 'semantic-ui-react'
+import Rooms from './Rooms';
 
 
 
@@ -9,8 +9,7 @@ import Typography from '@material-ui/core/Typography';
 class Room extends Component {
 
     render() { 
-       
-    console.log(this.props)
+       const {setColor, colorName, id} = this.props;
 
         // const roomNameStyle = {
         //     display: 'flex',
@@ -21,12 +20,13 @@ class Room extends Component {
             <div>
                 
                 <NavLink 
-                    to ={`/room/${this.props.id}`}
+                    to ={`/room/${id}`}
                     // activeClassName={this.props.colorName}
                     >
-                    <Button variant="outlined" color="secondary">{this.props.colorName}</Button>
+                    <Button onClick={setColor(colorName)} color={colorName}>{colorName}</Button>
                 </NavLink>         
                 {/* <Typography variant="h6">{this.props.colorName}</Typography>   */}
+
             </div>
          );
     }
