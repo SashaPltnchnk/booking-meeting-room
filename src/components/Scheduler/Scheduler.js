@@ -3,6 +3,8 @@ import BigCalendar from "react-big-calendar";
 import moment from "moment";
 import { connect } from 'react-redux'
 import { fetchEvents, addEvent, deleteEvent } from '../../store/actions/events'
+import { withRouter } from 'react-router-dom'
+
 
 
 
@@ -62,6 +64,7 @@ class Scheduler extends Component {
 
   render() {
     // debugger
+    // console.warn('sokisdfojifsokjidfspokdfspokds',this.props)
    
 
     const newEvents = this.props.events.filter(event => this.props.match.params.roomId === event.hall_id)
@@ -97,4 +100,4 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = { fetchEvents, addEvent, deleteEvent };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Scheduler);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Scheduler));

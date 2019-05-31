@@ -31,9 +31,6 @@ export const logOut = () => ({
     meta: {
         asPromise: true
     }
-
-    //localStorage.clear();
-    //sessionStorage.clear();
 });
 
 

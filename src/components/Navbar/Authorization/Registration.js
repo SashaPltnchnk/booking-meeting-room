@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { signIn } from '../../../store/actions/auth'
+import { register } from '../../../store/actions/auth'
 import Form from './Auth'
 
 
-class SignIn extends Component {
+class Authorization extends Component {
     state = { 
         form: {
             username: '',
@@ -29,19 +29,17 @@ class SignIn extends Component {
 
     submitHandler = (e) => {
         const {username, email, password} = this.state.form
+        // const userId = this.props.
         e.preventDefault();
-        // debugger
-        this.props.signIn({username, password, email})
-            .then((res) => {
-                localStorage.setItem('token', res.data.token)
-                localStorage.setItem('user_id', res.data._id)
-            })
+        this.props.register({username, password, email})
+            .then((res) => localStorage.setItem('token', res.data.token))
             .then(() => this.props.history.push('/room/:roomId'))
     }
 
     render() { 
-        // console.log('WArb',this.props.res)
+        // console.log('WArb',this.props.response)
         return ( 
+
             <>
                 <h3>{this.props.buttonName}</h3>
                 <Form 
@@ -50,12 +48,11 @@ class SignIn extends Component {
                     buttonName={this.props.buttonName}
                     form={this.state.form}
                 />
-            </>     
+            </>
          );
     }
 }
 
-
-const mapDispatchToProps = { signIn };
+const mapDispatchToProps = { register };
  
-export default connect(null, mapDispatchToProps)(SignIn);
+export default connect(null, mapDispatchToProps)(Authorization);

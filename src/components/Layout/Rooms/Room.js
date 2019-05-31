@@ -9,7 +9,7 @@ class Room extends Component {
 
     render() { 
        
-    // console.log(this.props)
+    console.log(this.props)
 
         // const roomNameStyle = {
         //     display: 'flex',
@@ -17,7 +17,7 @@ class Room extends Component {
         //     justifyContent: 'center'
         // }
         return ( 
-            <div className={this.props.colorName}>
+            <div>
                 <Link to ={`/room/${this.props.id}`}>
                     <Button variant="outlined" color="secondary">{this.props.colorName}</Button>
                 </Link>           

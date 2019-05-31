@@ -36,11 +36,6 @@ const reducer = (state = initialState, action) => {
                    convert(action.data)
                ]
             };
-        // case actionTypes.DELETE_EVENT:
-        //         return {
-        //             ...state,
-        //             events: action.data.map(convert)
-        //         };
             
         default: return state;
     }  

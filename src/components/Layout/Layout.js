@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
-import Authorization from '../Navbar/Authorization/Authorization'
+import Authorization from '../Navbar/Authorization/Registration'
 import SignIn from '../Navbar/Authorization/SignIn'
 import Scheduler from '../Scheduler/Scheduler'
 import Rooms from './Rooms/Rooms'
