@@ -2,6 +2,13 @@ import * as actionTypes from '../actions/events';
 // import moment from "moment";
 import { error, success } from 'redux-saga-requests';
 
+const convert = event => {
+    return {
+        ...event,
+        start: new Date(event.from),
+        end: new Date(event.to),
+    }
+}
 const initialState = {
     events: [
         {
@@ -17,13 +24,7 @@ const reducer = (state = initialState, action) => {
         case success(actionTypes.FETCH_EVENTS):
             return {
                 ...state,
-                events: action.data.map(ticket => {
-                    return {
-                        ...ticket,
-                        start: new Date(ticket.from),
-                        end: new Date(ticket.to),
-                    }
-                })
+                events: action.data.map(convert)
             };
         case error(actionTypes.FETCH_EVENTS): 
             console.error(action.error.message)
@@ -31,16 +32,14 @@ const reducer = (state = initialState, action) => {
         case success(actionTypes.ADD_EVENT):
             return {
                 ...state,
-                // events: [
-                //         ...state.events,
-                //         {
-                //           start: action.data.from,
-                //           end: action.data.to,
-                //           title: action.data,
-                //           hall_id: "5ce7fd40e7d2fb789aa24eb2"
-                //         },
-                //       ]
+               events: [
+                   ...state.events,
+                   convert(action.data),
+                //    start: new Date(action.data.from),
+                //    end: new Date(action.data.to),
+               ]
             };
+            
         default: return state;
     }  
 }

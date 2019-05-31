@@ -47,7 +47,6 @@ class Scheduler extends Component {
 
     
     this.props.addEvent(dataToSend)
-      .then(this.props.fetchEvents)
   }
 
   render() {
