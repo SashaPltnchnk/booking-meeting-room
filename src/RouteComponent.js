@@ -4,7 +4,6 @@ import { Route } from 'react-router-dom'
 import Authorization from './components/Navbar/Authorization/Registration'
 import SignIn from './components/Navbar/Authorization/SignIn'
 import Scheduler from './components/Scheduler/Scheduler'
-import Rooms from './components/Layout/Rooms/Rooms'
 
 const routeComponent = (props) => {
     // console.warn(props.location.pathname)
@@ -28,7 +27,6 @@ const routeComponent = (props) => {
             />
             {/* { !props.location.pathname === "/signIn" && "/signUp" ? <Rooms /> : null} */}
             <Route path='/room/:roomId' component={Scheduler} isAuth={props.isAuth}/>
-            <Route path='/room' component={Rooms} />
         </>
      );
 }
