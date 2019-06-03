@@ -22,12 +22,6 @@ class Room extends Component {
 
     render() { 
        const {colorName, id} = this.props;
-
-        // const roomNameStyle = {
-        //     display: 'flex',
-        //     flexDirection: 'column',    
-        //     justifyContent: 'center'
-        // }
         return ( 
             <div>
                 <NavLink 

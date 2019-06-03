@@ -4,8 +4,6 @@ import SignIn from '../Authorization/SignIn';
 import Registration from '../Authorization/Registration';
 
 
-
-
 class LogOutLinks extends Component {
 
   render() {

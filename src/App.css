@@ -1,26 +1,57 @@
-/* @import "react-big-calendar/lib/css/react-big-calendar.css"; */
-
-
-/* .green .rbc-calendar {
-    background-color: rgb(155, 209, 155); } */
 
 .green .rbc-today {
-    background-color: rgb(98, 155, 98); }
+    background-color: rgba(159, 204, 159, 0.37); }
 
-/* .red .rbc-calendar {
-    background-color: rgb(218, 86, 68); } */
+.green .rbc-time-view {
+    border: 1px solid rgb(98, 155, 98); }
+
+.green .rbc-event {
+    background-color: rgb(98, 155, 98);
+    color: #fff; }
+
+.green .rbc-day-slot .rbc-event {
+    border: none; }
+
+
 
 .red .rbc-today {
-    background-color: rgb(196, 123, 114); }
+    background-color: rgba(206, 166, 161, 0.507); }
 
-/* .blue .rbc-calendar {
-    background-color: rgb(135, 167, 235); } */
+.red .rbc-time-view {
+    border: 1px solid rgb(196, 123, 114); }
+
+.red .rbc-event {
+    background-color: rgb(196, 123, 114);
+    color: #fff;}    
+
+.red .rbc-day-slot .rbc-event {
+    border: none; }
+
+
 
 .blue .rbc-today {
-    background-color: rgb(122, 195, 230); }
-/* 
-.violet .rbc-calendar {
-    background-color: rgb(112, 62, 160); } */
+    background-color: rgba(175, 209, 224, 0.541); }
+
+.blue .rbc-time-view {
+    border: 1px solid  rgb(122, 195, 230); }
+
+.blue .rbc-event {
+    background-color: rgb(122, 195, 230);
+    color: #fff; }
+
+.blue .rbc-day-slot .rbc-event {
+    border: none; }
+
 
 .violet .rbc-today {
-    background-color: rgb(141, 83, 180); }
+    background-color: rgba(179, 138, 207, 0.589); }
+
+.violet .rbc-time-view {
+    border: 1px solid rgb(141, 83, 180); }
+
+.violet .rbc-event {
+    background-color: rgb(141, 83, 180);
+    color: #fff; }
+
+.violet .rbc-day-slot .rbc-event {
+    border: none; }
