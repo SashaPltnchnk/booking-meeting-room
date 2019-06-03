@@ -3,16 +3,10 @@ import BigCalendar from "react-big-calendar";
 import moment from "moment";
 import { connect } from 'react-redux'
 import { fetchEvents, addEvent, deleteEvent } from '../../store/actions/events'
-// import { withRouter } from 'react-router-dom'
-
-
-
-
 
 import "react-big-calendar/lib/css/react-big-calendar.css";
-
 import '../../App.css'
-import Rooms from "../Layout/Rooms/Rooms";
+
 
 
 
@@ -34,15 +28,6 @@ const formats = {
 
 
 class Scheduler extends Component { 
-  state = {
-    colors: [
-        'green',
-        'red',
-        'blue',
-        'violet'
-    ],
-    currentColor: ''
-  }
 
   componentDidMount() {
       this.props.fetchEvents(this.props.match.params.roomId)
@@ -71,10 +56,7 @@ class Scheduler extends Component {
     fetchEvents();
   }
 
-  setColor = (currentColor) => () => {
-    // console.log(currentColor)
-    this.setState({currentColor})
-  }
+
 
   render() {
     // debugger
@@ -85,25 +67,22 @@ class Scheduler extends Component {
     
   
     return (
-      <>
-      <Rooms colors={this.state.colors} setColor={this.setColor} />
-      <div className={this.state.currentColor}>
-        <BigCalendar
-          localizer={localizer}
-          defaultDate={new Date()}
-          min={moment('9:00am', 'h:mma').toDate()}
-          max={moment('6:00pm', 'h:mma').toDate()}
-          formats={formats}
-          views={allViews}
-          defaultView='work_week'
-          events={newEvents}
-          selectable
-          onSelectEvent={(event) => this.handleDeleteEvent(event._id)} 
-          onSelectSlot={this.handleSelect}
-          style={{ height: "80vh", width: "85vw", margin: "0 auto"}}
-        />
-      </div>
-      </>
+        <div className={this.props.currentColor}>
+          <BigCalendar
+            localizer={localizer}
+            defaultDate={new Date()}
+            min={moment('9:00am', 'h:mma').toDate()}
+            max={moment('6:00pm', 'h:mma').toDate()}
+            formats={formats}
+            views={allViews}
+            defaultView='work_week'
+            events={newEvents}
+            selectable
+            onSelectEvent={(event) => this.handleDeleteEvent(event._id)} 
+            onSelectSlot={this.handleSelect}
+            style={{ height: "80vh", margin: "0 auto"}}
+          />
+        </div>
     );
   }
 }
@@ -111,7 +90,8 @@ class Scheduler extends Component {
 const mapStateToProps = state => {
     return {
         events: state.events.events,
-        rooms: state.room.rooms
+        rooms: state.room.rooms,
+        currentColor: state.color.currentColor
     }
 }
 

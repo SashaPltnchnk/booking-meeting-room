@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-// import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchRooms } from '../../../store/actions/room'
 import Room  from './Room'
@@ -13,7 +12,7 @@ class Rooms extends Component {
     }
     
     render() {
-        const { rooms, colors, setColor } = this.props
+        const { rooms, colors } = this.props
         // console.warn(rooms);
         
         const roomStyle = {
@@ -25,9 +24,7 @@ class Rooms extends Component {
             <Room 
                 key={room._id}
                 id={room._id}
-                // name={room.title}
-                colorName={colors[id]}
-                setColor={setColor}
+                colorName={colors[id].color}
             />
         ))
        
@@ -41,7 +38,8 @@ class Rooms extends Component {
 
 const mapStateToProps = state => {
     return {
-        rooms: state.room.rooms
+        rooms: state.room.rooms,
+        colors: state.color.colors
     }
 }
 

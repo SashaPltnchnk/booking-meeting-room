@@ -7,6 +7,7 @@ import thunk from 'redux-thunk';
 import eventsReducer from './reducers/events'
 import authReducer from './reducers/auth'
 import roomsReducer from './reducers/room'
+import colorReducer from './reducers/color'
 // import { save, load } from "redux-localstorage-simple"
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -18,7 +19,8 @@ const saga = createSaga()
 const rootReducer = combineReducers({
     events: eventsReducer,
     auth: authReducer,
-    room: roomsReducer
+    room: roomsReducer,
+    color: colorReducer
 });
 
 /*

@@ -37,12 +37,12 @@ class SignIn extends Component {
                 localStorage.setItem('token', res.data.token)
                 localStorage.setItem('user_id', res.data._id)
             })
-            .then(() => this.props.history.push('/room/:roomId'))
+            // .then(() => this.props.history.push('/'))
     }
 
     render() { 
         // console.log('WArb',this.props.res)
-        const { buttonName, error } = this.props
+        const { error } = this.props
 
         let showError  = this.props.error 
         ? <Message warning>
@@ -55,7 +55,7 @@ class SignIn extends Component {
                 <Form 
                     changeHandler={this.changeHandler}
                     submitHandler={this.submitHandler}
-                    buttonName={buttonName}
+                    buttonName={'Sign In'}
                     form={this.state.form}
                 />
             </>     
