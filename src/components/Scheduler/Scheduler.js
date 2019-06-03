@@ -6,6 +6,7 @@ import { fetchEvents, addEvent, deleteEvent } from '../../store/actions/events'
 
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import '../../App.css'
+import { Button, Modal, Input } from 'semantic-ui-react'
 
 
 
@@ -28,13 +29,28 @@ const formats = {
 
 
 class Scheduler extends Component { 
+    state = {
+        openDeleteEvent: false,
+        openCreateEventModal: false,
+        eventId: '',
+        title: '',
+        slot: null,
+    }
+
+    showDeleteModal = dimmer => this.setState({ dimmer, openDeleteEvent: true,  })
+    
+    closeDeleteModal = () => this.setState({ openDeleteEvent: false })
+
+    showCreateModal = dimmer => this.setState({ dimmer, openCreateEventModal: true,  })
+    
+    closeCreateModal = () => this.setState({ openCreateEventModal: false })
 
   componentDidMount() {
       this.props.fetchEvents(this.props.match.params.roomId)
   }
 
-  handleSelect = (slot) => {
-    const title = window.prompt('New Event name')
+  handleSelect = () => {
+      const {title, slot} = this.state
     // console.warn(this.props.match.params.roomId);
 
     const dataToSend = {
@@ -46,28 +62,38 @@ class Scheduler extends Component {
     }
 
     this.props.addEvent(dataToSend)
+     
+    this.setState({ 
+        title: '',
+    })
+
+    this.closeCreateModal()
   }
 
   
-  handleDeleteEvent = async (id) => {
+  handleDeleteEvent = async () => {
     const {deleteEvent, fetchEvents} = this.props;
   
-    await deleteEvent(id)
+    await deleteEvent(this.state.eventId)
     fetchEvents();
+    this.closeDeleteModal()
+    this.setState({
+        eventId: '', 
+    })
   }
 
 
 
   render() {
+
+    const { openDeleteEvent, dimmer, title, openCreateEventModal } = this.state
     // debugger
     // console.warn('sokisdfojifsokjidfspokdfspokds',this.props)
-   
-
     const newEvents = this.props.events.filter(event => this.props.match.params.roomId === event.hall_id)
-    
   
     return (
         <div className={this.props.currentColor}>
+            
           <BigCalendar
             localizer={localizer}
             defaultDate={new Date()}
@@ -78,11 +104,55 @@ class Scheduler extends Component {
             defaultView='work_week'
             events={newEvents}
             selectable
-            onSelectEvent={(event) => this.handleDeleteEvent(event._id)} 
-            onSelectSlot={this.handleSelect}
+            onSelectEvent={(event) => {
+                this.showDeleteModal('blurring');
+                this.setState({
+                    eventId: event._id
+                })
+            }} 
+            // onSelectEvent={this.show('blurring');} 
+            onSelectSlot={(slot) => {
+                this.showCreateModal('blurring')
+                this.setState({slot})
+            }}
             style={{ height: "80vh", margin: "0 auto"}}
           />
+         <Modal dimmer={dimmer} open={openDeleteEvent} onClose={this.closeDeleteModal}>
+          <Modal.Header>Are you sure that you want to delete this event?</Modal.Header>
+          <Modal.Actions>
+            <Button color='black' onClick={this.closeDeleteModal}>
+              Nope
+            </Button>
+            <Button
+              positive
+              icon='checkmark'
+              labelPosition='right'
+              content="Yes"
+              onClick={() => this.handleDeleteEvent()}
+            />
+          </Modal.Actions>
+        </Modal>
+
+        <Modal dimmer={dimmer} open={openCreateEventModal} onClose={this.closeCreateModal}>
+          <Modal.Header>New Event name</Modal.Header>
+          <Modal.Content>
+            <Input fluid placeholder='event name' value={title} onChange={(e) => this.setState({title: e.target.value})}/>         
+          </Modal.Content>
+          <Modal.Actions>
+            <Button color='black' onClick={this.closeCreateModal}>
+              Cancel
+            </Button>
+            <Button
+              positive
+              icon='checkmark'
+              labelPosition='right'
+              content="Add"
+              onClick={() => this.handleSelect()}
+            />
+          </Modal.Actions>
+        </Modal>
         </div>
+        
     );
   }
 }
