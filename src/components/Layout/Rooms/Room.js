@@ -21,7 +21,7 @@ class Room extends Component {
                 <NavLink 
                     to ={`/room/${id}`}
                     // activeClassName={this.props.colorName}
-                    >
+                >
                     <Button onClick={setColor(colorName)} color={colorName}>{colorName}</Button>
                 </NavLink>         
             </div>

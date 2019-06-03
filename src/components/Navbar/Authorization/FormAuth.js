@@ -21,11 +21,11 @@ const inputs = [
 ]
 
 
-const formAuth = props => {
+const formAuth = ({ buttonName, submitHandler, form, changeHandler }) => {
     return ( 
         <>
-            <Header size='large' color='green'>{props.buttonName}</Header>
-            <Form onSubmit={props.submitHandler}>
+            <Header size='large' color='green'>{buttonName}</Header>
+            <Form onSubmit={submitHandler}>
                 {inputs.map(input => {
                     // debugger
                     return (
@@ -34,8 +34,8 @@ const formAuth = props => {
                                 <input 
                                 placeholder={input.placeholder} 
                                 name={input.name} 
-                                value={props.form[input.name]} 
-                                onChange={props.changeHandler} 
+                                value={form[input.name]} 
+                                onChange={changeHandler} 
                                 type={input.type}
                             />
                         </Form.Field>
@@ -44,7 +44,7 @@ const formAuth = props => {
                     })}
 
                 <div>
-                    <Button inverted color='green'>{props.buttonName}</Button>
+                    <Button inverted color='green'>{buttonName}</Button>
                 </div>
             </Form>      
         </>

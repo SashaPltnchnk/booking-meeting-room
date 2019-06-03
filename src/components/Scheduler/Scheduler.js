@@ -3,14 +3,8 @@ import BigCalendar from "react-big-calendar";
 import moment from "moment";
 import { connect } from 'react-redux'
 import { fetchEvents, addEvent, deleteEvent } from '../../store/actions/events'
-// import { withRouter } from 'react-router-dom'
-
-
-
-
 
 import "react-big-calendar/lib/css/react-big-calendar.css";
-
 import '../../App.css'
 import Rooms from "../Layout/Rooms/Rooms";
 
@@ -20,8 +14,6 @@ const localizer = BigCalendar.momentLocalizer(moment);
 
 let allViews = Object.keys(BigCalendar.Views).map(k => BigCalendar.Views[k])
 
-
-
 const formats = {
     dayFormat: (date, culture, momentLocalizer) =>
       momentLocalizer.format(date, 'DD dddd', culture),
@@ -30,7 +22,6 @@ const formats = {
     eventTimeRangeFormat: (a, culture, momentLocalizer) =>
       momentLocalizer.format(a.start, 'h:mm a', culture)
 }
-
 
 
 class Scheduler extends Component { 
@@ -45,7 +36,8 @@ class Scheduler extends Component {
   }
 
   componentDidMount() {
-      this.props.fetchEvents(this.props.match.params.roomId)
+      // this.props.fetchEvents(this.props.match.params.roomId)
+      this.props.fetchEvents()
   }
 
   handleSelect = (slot) => {
@@ -78,7 +70,7 @@ class Scheduler extends Component {
 
   render() {
     // debugger
-    // console.warn('sokisdfojifsokjidfspokdfspokds',this.props)
+    console.warn('sokisdfojifsokjidfspokdfspokds',this.props)
    
 
     const newEvents = this.props.events.filter(event => this.props.match.params.roomId === event.hall_id)
@@ -86,8 +78,10 @@ class Scheduler extends Component {
   
     return (
       <>
-      <Rooms colors={this.state.colors} setColor={this.setColor} />
-      <div className={this.state.currentColor}>
+      {/* <Rooms colors={this.state.colors} setColor={this.setColor} /> */}
+      <div 
+        // className={this.state.currentColor}
+        >
         <BigCalendar
           localizer={localizer}
           defaultDate={new Date()}
@@ -97,6 +91,7 @@ class Scheduler extends Component {
           views={allViews}
           defaultView='work_week'
           events={newEvents}
+          // events={this.props.events}
           selectable
           onSelectEvent={(event) => this.handleDeleteEvent(event._id)} 
           onSelectSlot={this.handleSelect}

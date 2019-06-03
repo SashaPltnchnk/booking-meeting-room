@@ -37,7 +37,7 @@ class Authorization extends Component {
                 localStorage.setItem('token', res.data.token)
                 localStorage.setItem('user_id', res.data._id)
             })
-            .then(() => this.props.history.push('/room/:roomId'))
+            // .then(() => this.props.history.push('/room/:roomId'))
     }
 
     render() { 

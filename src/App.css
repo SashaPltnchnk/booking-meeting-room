@@ -4,23 +4,39 @@
 /* .green .rbc-calendar {
     background-color: rgb(155, 209, 155); } */
 
-.green .rbc-today {
-    background-color: rgb(98, 155, 98); }
+/* .green .rbc-today {
+    background-color: rgb(98, 155, 98); } */
+
+.green .rbc-time-view {
+    border: 1px solid rgb(98, 155, 98);
+}
 
 /* .red .rbc-calendar {
     background-color: rgb(218, 86, 68); } */
 
-.red .rbc-today {
-    background-color: rgb(196, 123, 114); }
+/* .red .rbc-today {
+    background-color: rgb(196, 123, 114); } */
+
+.red .rbc-time-view {
+    border: 1px solid  rgb(196, 123, 114);
+}
 
 /* .blue .rbc-calendar {
     background-color: rgb(135, 167, 235); } */
 
-.blue .rbc-today {
-    background-color: rgb(122, 195, 230); }
+/* .blue .rbc-today {
+    background-color: rgb(122, 195, 230); } */
+
+.blue .rbc-time-view {
+    border: 1px solid  rgb(122, 195, 230);;
+}
 /* 
 .violet .rbc-calendar {
     background-color: rgb(112, 62, 160); } */
 
-.violet .rbc-today {
-    background-color: rgb(141, 83, 180); }
+/* .violet .rbc-today {
+    background-color: rgb(141, 83, 180); } */
+
+.violet .rbc-time-view {
+    border: 1px solid  rgb(141, 83, 180);
+}

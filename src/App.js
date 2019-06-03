@@ -4,6 +4,8 @@ import RouteComponent from './RouteComponent'
 import { BrowserRouter } from 'react-router-dom'
 import 'semantic-ui-css/semantic.min.css'
 import { Container } from 'semantic-ui-react'
+// import RoomsContainer from './components/Layout/Rooms/RoomsContainer'
+// import Scheduler from './components/Scheduler/Scheduler'
 // import './App.scss'
 // import './App.css'
 
@@ -17,6 +19,8 @@ function App() {
         <Container style={containerStyle}>
           <Navbar />
           <RouteComponent />
+          {/* <RoomsContainer /> */}
+          {/* <Scheduler /> */}
         </Container>
     </BrowserRouter>  
   );

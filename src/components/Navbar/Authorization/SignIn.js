@@ -37,10 +37,11 @@ class SignIn extends Component {
                 localStorage.setItem('token', res.data.token)
                 localStorage.setItem('user_id', res.data._id)
             })
-            .then(() => this.props.history.push('/room/:roomId'))
+            // .then(() => this.props.history.push(`/room/${this.props.rooms[0]._id}`))
     }
 
     render() { 
+        console.log(this.props)
         // console.log('WArb',this.props.res)
         const { buttonName, error } = this.props
 
@@ -65,7 +66,8 @@ class SignIn extends Component {
 
 const mapStateToProps = state => {
     return {
-        error: state.auth.err
+        error: state.auth.err,
+        rooms: state.room.rooms
     }
 }
 
