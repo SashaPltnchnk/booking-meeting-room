@@ -1,6 +1,6 @@
 import React from 'react'
 import Navbar from './components/Navbar/Navbar'
-import Layout from './components/Layout/Layout'
+import RouteComponent from './RouteComponent'
 import { BrowserRouter } from 'react-router-dom'
 import 'semantic-ui-css/semantic.min.css'
 import { Container } from 'semantic-ui-react'
@@ -16,7 +16,7 @@ function App() {
     <BrowserRouter >
         <Container style={containerStyle}>
           <Navbar />
-          <Layout />
+          <RouteComponent />
         </Container>
     </BrowserRouter>  
   );

@@ -15,7 +15,7 @@ class LogInLinks extends Component {
   }
 
   render() {
-    console.warn('sokisdfojifsokjidfspokdfspokds', this.props)
+    // console.warn('sokisdfojifsokjidfspokdfspokds', this.props)
     // debugger
   
     return (

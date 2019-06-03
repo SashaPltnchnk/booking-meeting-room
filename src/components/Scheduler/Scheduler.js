@@ -64,7 +64,6 @@ class Scheduler extends Component {
   }
 
   
-
   handleDeleteEvent = async (id) => {
     const {deleteEvent, fetchEvents} = this.props;
   
@@ -73,7 +72,7 @@ class Scheduler extends Component {
   }
 
   setColor = (currentColor) => () => {
-    console.log(currentColor)
+    // console.log(currentColor)
     this.setState({currentColor})
   }
 

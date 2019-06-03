@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button,  Form } from 'semantic-ui-react'
+import { Button,  Form, Header } from 'semantic-ui-react'
 
 
 const inputs = [
@@ -23,28 +23,31 @@ const inputs = [
 
 const formAuth = props => {
     return ( 
-        <Form onSubmit={props.submitHandler}>
-            {inputs.map(input => {
-                // debugger
-                return (
-                    <Form.Field key={input.name}>
-                        <label>{input.placeholder}</label>
-                            <input 
-                            placeholder={input.placeholder} 
-                            name={input.name} 
-                            value={props.form[input.name]} 
-                            onChange={props.changeHandler} 
-                            type={input.type}
-                        />
-                    </Form.Field>
-                    
-                    )
-                })}
+        <>
+            <Header size='large' color='green'>{props.buttonName}</Header>
+            <Form onSubmit={props.submitHandler}>
+                {inputs.map(input => {
+                    // debugger
+                    return (
+                        <Form.Field key={input.name}>
+                            <label>{input.placeholder}</label>
+                                <input 
+                                placeholder={input.placeholder} 
+                                name={input.name} 
+                                value={props.form[input.name]} 
+                                onChange={props.changeHandler} 
+                                type={input.type}
+                            />
+                        </Form.Field>
+                        
+                        )
+                    })}
 
-            <div>
-                <Button inverted color='green'>{props.buttonName}</Button>
-            </div>
-        </Form>      
+                <div>
+                    <Button inverted color='green'>{props.buttonName}</Button>
+                </div>
+            </Form>      
+        </>
      );
   };
   

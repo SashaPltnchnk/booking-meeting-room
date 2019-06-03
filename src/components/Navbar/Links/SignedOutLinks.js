@@ -5,13 +5,13 @@ import { Button } from 'semantic-ui-react'
 
 
 class LogOutLinks extends Component {
-    state = {
-        showModal: false
-    }
+    // state = {
+    //     showModal: false
+    // }
 
-    showModal = () => {
-        this.setState({ showModal: true })
-    }
+    // showModal = () => {
+    //     this.setState({ showModal: true })
+    // }
   render() {
     return (
       <div>

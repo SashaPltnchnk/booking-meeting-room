@@ -21,7 +21,6 @@ class Rooms extends Component {
             justifyContent: 'space-between',
             marginBottom: '15px'
         }
-        // debugger
         const renderedRooms = rooms.map((room, id) => (
             <Room 
                 key={room._id}
@@ -31,6 +30,7 @@ class Rooms extends Component {
                 setColor={setColor}
             />
         ))
+       
         return ( 
             <div  style={roomStyle}>
                {renderedRooms }
@@ -40,7 +40,6 @@ class Rooms extends Component {
 }
 
 const mapStateToProps = state => {
-    
     return {
         rooms: state.room.rooms
     }
