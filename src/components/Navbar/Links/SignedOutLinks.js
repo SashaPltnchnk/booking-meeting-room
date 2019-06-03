@@ -9,8 +9,18 @@ class LogOutLinks extends Component {
   render() {
     return (
       <div>
-        <Modal trigger={<Button color='black'>Sign In</Button>}> <Modal.Content><SignIn/></Modal.Content></Modal>
-        <Modal trigger={<Button color='black'>Register</Button>}> <Modal.Content><Registration /></Modal.Content></Modal>
+        <Modal 
+          trigger={<Button color='black'>Sign In</Button>}> 
+            <Modal.Content>
+              <SignIn/>
+            </Modal.Content>
+        </Modal>
+        <Modal 
+          trigger={<Button color='black'>Register</Button>}> 
+            <Modal.Content>
+              <Registration />
+            </Modal.Content>
+        </Modal>
       </div>
     )
   }

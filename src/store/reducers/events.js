@@ -9,7 +9,8 @@ const convert = event => {
     }
 }
 const initialState = {
-    events: []
+    events: [],
+    err: null
 }
 
 const reducer = (state = initialState, action) => {
@@ -30,6 +31,12 @@ const reducer = (state = initialState, action) => {
                    convert(action.data)
                ]
             };
+        case error(actionTypes.ADD_EVENT):
+            // console.log(action.error.response.data.message)
+            return {
+                ...state,
+                err: action.error.response.data.message
+            }   
             
         default: return state;
     }  

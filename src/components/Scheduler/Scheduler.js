@@ -31,6 +31,7 @@ class Scheduler extends Component {
         openDeleteEvent: false,
         openCreateEventModal: false,
         eventId: '',
+        userEventId: '',
         title: '',
         slot: null,
     }
@@ -86,10 +87,13 @@ class Scheduler extends Component {
 
     const { openDeleteEvent, dimmer, title, openCreateEventModal } = this.state
     // debugger
-    // console.warn('RRRRRRRRRRR', localStorage.getItem('user_id'))
-    // console.warn('RRRRRRRRRRR', this.props.userId)
+
+    const modalContent = this.props.userId === this.state.userEventId ? <div>yes, SIMILAR </div> : <div> NOT SIMILAR </div>
+
+    // console.warn('RRRRRRRRRRR', this.props)
+    // console.warn('RRRRRRRRRRR', this.state.userEventId)
     const newEvents = this.props.events.filter(event => this.props.match.params.roomId === event.hall_id)
-//   console.log(event)
+
     return (
         <div className={this.props.currentColor}>
             
@@ -106,7 +110,8 @@ class Scheduler extends Component {
             onSelectEvent={(event) => {
                 this.showDeleteModal('blurring');
                 this.setState({
-                    eventId: event._id
+                    eventId: event._id,
+                    userEventId: event.user_id
                 })
             }} 
             onSelectSlot={(slot) => {
@@ -117,8 +122,11 @@ class Scheduler extends Component {
           />
 
     
-         <Modal dimmer={dimmer} open={openDeleteEvent} onClose={this.closeDeleteModal}>
-            <Modal.Header>Remove reservation?</Modal.Header>
+          
+          
+          <Modal dimmer={dimmer} open={openDeleteEvent} onClose={this.closeDeleteModal}>
+            {/* <Modal.Header>Remove reservation?</Modal.Header> */}
+            <Modal.Header>  {modalContent}</Modal.Header>
             <Modal.Actions>
             <Button color='black' onClick={this.closeDeleteModal}>
                 Nope
@@ -132,12 +140,17 @@ class Scheduler extends Component {
             />
             </Modal.Actions>
           </Modal>
+        // }
             
 
         <Modal dimmer={dimmer} open={openCreateEventModal} onClose={this.closeCreateModal}>
           <Modal.Header>New Event name</Modal.Header>
           <Modal.Content>
-            <Input fluid placeholder='event name' value={title} onChange={(e) => this.setState({title: e.target.value})}/>         
+            <Input 
+              fluid 
+              placeholder='event name' 
+              value={title} 
+              onChange={(e) => this.setState({title: e.target.value})}/>         
           </Modal.Content>
           <Modal.Actions>
             <Button color='black' onClick={this.closeCreateModal}>

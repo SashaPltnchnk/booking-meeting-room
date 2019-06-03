@@ -4,7 +4,7 @@ import { error, success } from 'redux-saga-requests';
 const initialState = {
   email: null,
   token: null,
-  userId: null,
+  userId: localStorage.getItem('user_id'),
   username: null,
   isAuth: !!localStorage.getItem('token'),
   err: null,
