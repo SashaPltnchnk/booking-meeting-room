@@ -9,13 +9,7 @@ const convert = event => {
     }
 }
 const initialState = {
-    events: [
-        // {
-        //     title: 'AZAZAZ',
-        //     start: new Date(2019, 4, 29, 0, 0, 0),
-        //     end: new Date(2019, 4, 29, 23, 0, 0),
-        // }
-    ]
+    events: []
 }
 
 const reducer = (state = initialState, action) => {

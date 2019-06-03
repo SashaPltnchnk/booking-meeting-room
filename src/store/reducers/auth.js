@@ -27,13 +27,15 @@ const reducer = (state = initialState, action) => {
       };
 
     case error(actionTypes.REGISTER):
-      console.warn(action.error.response.data)
+      // console.warn(action.error.response.data)
       return {
         ...state,
         err: action.error.response.data.errors.message
       }
     
     case success(actionTypes.SIGN_IN):
+      console.warn(action);
+      
         return {
             ...state,
             email: action.data.email,

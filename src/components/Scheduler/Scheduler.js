@@ -9,8 +9,6 @@ import '../../App.css'
 import { Button, Modal, Input } from 'semantic-ui-react'
 
 
-
-
 const localizer = BigCalendar.momentLocalizer(moment);
 
 let allViews = Object.keys(BigCalendar.Views).map(k => BigCalendar.Views[k])
@@ -45,20 +43,20 @@ class Scheduler extends Component {
     
     closeCreateModal = () => this.setState({ openCreateEventModal: false })
 
-  componentDidMount() {
-      this.props.fetchEvents(this.props.match.params.roomId)
-  }
+    componentDidMount() {
+        this.props.fetchEvents(this.props.match.params.roomId)
+    }
 
-  handleSelect = () => {
-      const {title, slot} = this.state
-    // console.warn(this.props.match.params.roomId);
+    handleSelect = () => {
+        const {title, slot} = this.state
+        // console.warn(this.props.match.params.roomId);
 
-    const dataToSend = {
-      from: new Date(slot.start).getTime(),
-      to: new Date(slot.end).getTime(),
-      hall_id: this.props.match.params.roomId,
-      user_id: localStorage.getItem('user_id'),
-      title,
+        const dataToSend = {
+            from: new Date(slot.start).getTime(),
+            to: new Date(slot.end).getTime(),
+            hall_id: this.props.match.params.roomId,
+            user_id: localStorage.getItem('user_id'),
+            title,
     }
 
     this.props.addEvent(dataToSend)
@@ -71,16 +69,16 @@ class Scheduler extends Component {
   }
 
   
-  handleDeleteEvent = async () => {
-    const {deleteEvent, fetchEvents} = this.props;
-  
-    await deleteEvent(this.state.eventId)
-    fetchEvents();
-    this.closeDeleteModal()
-    this.setState({
-        eventId: '', 
-    })
-  }
+    handleDeleteEvent = async () => {
+        const {deleteEvent, fetchEvents} = this.props;
+    
+        await deleteEvent(this.state.eventId)
+        fetchEvents();
+        this.closeDeleteModal()
+        this.setState({
+            eventId: '', 
+        })
+    }
 
 
 
@@ -88,9 +86,10 @@ class Scheduler extends Component {
 
     const { openDeleteEvent, dimmer, title, openCreateEventModal } = this.state
     // debugger
-    // console.warn('sokisdfojifsokjidfspokdfspokds',this.props)
+    // console.warn('RRRRRRRRRRR', localStorage.getItem('user_id'))
+    // console.warn('RRRRRRRRRRR', this.props.userId)
     const newEvents = this.props.events.filter(event => this.props.match.params.roomId === event.hall_id)
-  
+//   console.log(event)
     return (
         <div className={this.props.currentColor}>
             
@@ -110,28 +109,30 @@ class Scheduler extends Component {
                     eventId: event._id
                 })
             }} 
-            // onSelectEvent={this.show('blurring');} 
             onSelectSlot={(slot) => {
                 this.showCreateModal('blurring')
                 this.setState({slot})
             }}
             style={{ height: "80vh", margin: "0 auto"}}
           />
+
+    
          <Modal dimmer={dimmer} open={openDeleteEvent} onClose={this.closeDeleteModal}>
-          <Modal.Header>Are you sure that you want to delete this event?</Modal.Header>
-          <Modal.Actions>
+            <Modal.Header>Remove reservation?</Modal.Header>
+            <Modal.Actions>
             <Button color='black' onClick={this.closeDeleteModal}>
-              Nope
+                Nope
             </Button>
             <Button
-              positive
-              icon='checkmark'
-              labelPosition='right'
-              content="Yes"
-              onClick={() => this.handleDeleteEvent()}
+                positive
+                icon='checkmark'
+                labelPosition='right'
+                content="Yes"
+                onClick={() => this.handleDeleteEvent()}
             />
-          </Modal.Actions>
-        </Modal>
+            </Modal.Actions>
+          </Modal>
+            
 
         <Modal dimmer={dimmer} open={openCreateEventModal} onClose={this.closeCreateModal}>
           <Modal.Header>New Event name</Modal.Header>
@@ -161,7 +162,8 @@ const mapStateToProps = state => {
     return {
         events: state.events.events,
         rooms: state.room.rooms,
-        currentColor: state.color.currentColor
+        currentColor: state.color.currentColor,
+        userId: state.auth.userId
     }
 }
 
