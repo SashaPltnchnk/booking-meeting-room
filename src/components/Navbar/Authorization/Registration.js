@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { register } from '../../../store/actions/auth'
+import { fetchRooms } from '../../../store/actions/room'
 import Form from './FormAuth'
 import { Message } from 'semantic-ui-react'
 
@@ -29,20 +30,16 @@ class Authorization extends Component {
 
 
     submitHandler = (e) => {
+        console.log(this.props)
         const {username, email, password} = this.state.form
         // const userId = this.props.
         e.preventDefault();
         this.props.register({username, password, email})
-            .then((res) => {
-                localStorage.setItem('token', res.data.token)
-                localStorage.setItem('user_id', res.data._id)
-            })
-            .then(() => this.props.history.push('/room/:roomId'))
     }
 
     render() { 
         // console.log('WArb',this.props.response)
-        const { buttonName, error} = this.props
+        const { error} = this.props
 
         let showError  = this.props.error 
             ? <Message warning>
@@ -56,7 +53,7 @@ class Authorization extends Component {
                 <Form 
                     changeHandler={this.changeHandler}
                     submitHandler={this.submitHandler}
-                    buttonName={buttonName}
+                    buttonName={'Register'}
                     form={this.state.form}
                 />
             </>
@@ -71,6 +68,6 @@ const mapStateToProps = state => {
 }
 
 
-const mapDispatchToProps = { register };
+const mapDispatchToProps = { register, fetchRooms };
  
 export default connect(mapStateToProps, mapDispatchToProps)(Authorization);

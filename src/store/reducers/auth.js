@@ -3,9 +3,9 @@ import { error, success } from 'redux-saga-requests';
 
 const initialState = {
   email: null,
-  token: null,
-  userId: null,
-  username: null,
+  token: localStorage.getItem('token'),
+  userId: localStorage.getItem('user_id'),
+  username: localStorage.getItem('username'),
   isAuth: !!localStorage.getItem('token'),
   err: null,
 //   loading: false,
@@ -16,28 +16,38 @@ const reducer = (state = initialState, action) => {
 
     case success(actionTypes.REGISTER):
       // console.log(action)
+      const newUser = JSON.parse(action.response.config.data);
+      localStorage.setItem('token', action.data.token)
+      localStorage.setItem('user_id', action.data._id)
+      localStorage.setItem('username', newUser.username)
+
       return {
         ...state,
         // token: action.token,
-        email: action.data.email,
-        username: action.data.username,
+        email: newUser.email,
+        username: newUser.username,
         isAuth: true,
         userId: action.data._id,
         // loading: false
       };
 
     case error(actionTypes.REGISTER):
-      console.warn(action.error.response.data)
+      // console.warn(action.error.response.data)
       return {
         ...state,
         err: action.error.response.data.errors.message
       }
     
     case success(actionTypes.SIGN_IN):
+      const user = JSON.parse(action.response.config.data);
+      localStorage.setItem('token', action.data.token)
+      localStorage.setItem('user_id', action.data._id)
+      localStorage.setItem('username', user.username)
+
         return {
             ...state,
-            email: action.data.email,
-            username: action.data.username,
+            email: user.email,
+            username: user.username,
             isAuth: true,
             userId: action.data._id,
             // loading: false
@@ -50,11 +60,14 @@ const reducer = (state = initialState, action) => {
         }
 
     case actionTypes.LOG_OUT:
+        localStorage.clear();
+        sessionStorage.clear();
         return {
           ...state,
           token: null,
           userId: null,
-          isAuth: null
+          isAuth: null,
+          // err: 'You have to log in or register to have possibility of booking rooms'
         };
 
     default:

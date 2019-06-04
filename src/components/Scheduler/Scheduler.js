@@ -3,17 +3,13 @@ import BigCalendar from "react-big-calendar";
 import moment from "moment";
 import { connect } from 'react-redux'
 import { fetchEvents, addEvent, deleteEvent } from '../../store/actions/events'
-// import { withRouter } from 'react-router-dom'
-
-
-
-
 
 import "react-big-calendar/lib/css/react-big-calendar.css";
-
 import '../../App.css'
-import Rooms from "../Layout/Rooms/Rooms";
-
+import DeleteEventModal from "./DeleteEventModal";
+import CreateEventModal from "./CreateEventModal";
+import MessageError from "./MessageError";
+import { Icon } from "semantic-ui-react";
 
 
 const localizer = BigCalendar.momentLocalizer(moment);
@@ -31,79 +27,153 @@ const formats = {
       momentLocalizer.format(a.start, 'h:mm a', culture)
 }
 
-
-
+const MyEvent = function (props) {
+  const { event } = props;
+  return (
+    <div>
+      {event.user_id === localStorage.getItem('user_id') ? <Icon name='user secret' />  : null}
+      <strong>{event.title}</strong>
+    </div>
+  )
+  }
+  
 class Scheduler extends Component { 
-  state = {
-    colors: [
-        'green',
-        'red',
-        'blue',
-        'violet'
-    ],
-    currentColor: ''
-  }
+    state = {
+        openDeleteEvent: false,
+        openCreateEventModal: false,
+        eventId: '',
+        userEventId: '',
+        title: '',
+        slot: null,
+        event: {}
+    }
 
-  componentDidMount() {
-      this.props.fetchEvents(this.props.match.params.roomId)
-  }
+    showDeleteModal = dimmer => this.setState({ dimmer, openDeleteEvent: true,  })
+    
+    closeDeleteModal = () => this.setState({ openDeleteEvent: false })
 
-  handleSelect = (slot) => {
-    const title = window.prompt('New Event name')
-    // console.warn(this.props.match.params.roomId);
+    showCreateModal = dimmer => this.setState({ dimmer, openCreateEventModal: true,  })
+    
+    closeCreateModal = () => this.setState({ openCreateEventModal: false })
 
-    const dataToSend = {
-      from: new Date(slot.start).getTime(),
-      to: new Date(slot.end).getTime(),
-      hall_id: this.props.match.params.roomId,
-      user_id: localStorage.getItem('user_id'),
-      title,
+    componentDidMount() {
+        this.props.fetchEvents(this.props.match.params.roomId)
+    }
+
+    handleSelect = () => {
+        const {title, slot} = this.state
+        // console.warn(this.props.match.params.roomId);
+
+        const dataToSend = {
+            from: new Date(slot.start).getTime(),
+            to: new Date(slot.end).getTime(),
+            hall_id: this.props.match.params.roomId,
+            user_id: localStorage.getItem('user_id'),
+            eventTitle: '',
+            title,
     }
 
     this.props.addEvent(dataToSend)
+     
+    this.setState({ 
+        title: '',
+    })
+
+    this.closeCreateModal()
   }
 
   
-  handleDeleteEvent = async (id) => {
-    const {deleteEvent, fetchEvents} = this.props;
-  
-    await deleteEvent(id)
-    fetchEvents();
-  }
+    handleDeleteEvent = async () => {
+        const {deleteEvent, fetchEvents} = this.props;
+    
+        await deleteEvent(this.state.eventId)
+        fetchEvents();
+        this.closeDeleteModal()
+        this.setState({
+            eventId: '', 
+        })
+    }
 
-  setColor = (currentColor) => () => {
-    // console.log(currentColor)
-    this.setState({currentColor})
-  }
+     changeHandler = (e) => {
+       this.setState({title: e.target.value})
+     }
 
   render() {
-    // debugger
-    // console.warn('sokisdfojifsokjidfspokdfspokds',this.props)
-   
 
-    const newEvents = this.props.events.filter(event => this.props.match.params.roomId === event.hall_id)
-    
-  
+    const { openDeleteEvent, dimmer, title, openCreateEventModal } = this.state
+
+    const newEvents = this.props.events
+    .filter(event => this.props.match.params.roomId === event.hall_id)
+    // .map(event => {
+    //   console.log(event.user_id === localStorage.getItem('user_id'))
+    //   return {
+    //     end: event.end,
+    //     from: event.from,
+    //     hall_id: event.hall_id,
+    //     start: event.start,
+    //     title: event.title,
+    //     to: event.to,
+    //     user_id: event.user_id,
+    //     _id: event._id,
+    //     resource: event.user_id === localStorage.getItem('user_id') ? 'sad' : null
+    //   }
+    // })
+
+
     return (
-      <>
-      <Rooms colors={this.state.colors} setColor={this.setColor} />
-      <div className={this.state.currentColor}>
-        <BigCalendar
-          localizer={localizer}
-          defaultDate={new Date()}
-          min={moment('9:00am', 'h:mma').toDate()}
-          max={moment('6:00pm', 'h:mma').toDate()}
-          formats={formats}
-          views={allViews}
-          defaultView='work_week'
-          events={newEvents}
-          selectable
-          onSelectEvent={(event) => this.handleDeleteEvent(event._id)} 
-          onSelectSlot={this.handleSelect}
-          style={{ height: "80vh", width: "85vw", margin: "0 auto"}}
-        />
-      </div>
-      </>
+        <div className={this.props.currentColor}>
+         <MessageError  />
+            
+          <BigCalendar
+            localizer={localizer}
+            defaultDate={new Date()}
+            min={moment('9:00am', 'h:mma').toDate()}
+            max={moment('6:00pm', 'h:mma').toDate()}
+            formats={formats}
+            views={allViews}
+            defaultView='work_week'
+            events={newEvents}
+            selectable
+            onSelectEvent={(event) => {
+                this.showDeleteModal('blurring');
+                this.setState({
+                    eventId: event._id,
+                    userEventId: event.user_id,
+                    eventTitle: event.title,
+                    event: event
+                })
+            }} 
+            onSelectSlot={(slot) => {
+                this.showCreateModal('blurring')
+                this.setState({slot})
+            }}
+            style={{ height: "80vh", margin: "0 auto"}}
+            components = {{ 
+              event: MyEvent
+            }}
+          />
+
+
+          <DeleteEventModal 
+            openDeleteEvent={openDeleteEvent}
+            closeDeleteModal={this.closeDeleteModal}
+            handleDeleteEvent={this.handleDeleteEvent}
+            dimmer={dimmer}
+            event={this.state.event}
+            />
+    
+
+          <CreateEventModal 
+            dimmer={dimmer}
+            openCreateEventModal={openCreateEventModal}
+            closeCreateModal={this.closeCreateModal}
+            handleSelect={this.handleSelect}
+            changeHandler={this.changeHandler}
+            title={title}
+          />
+          
+        </div>
+        
     );
   }
 }
@@ -111,7 +181,9 @@ class Scheduler extends Component {
 const mapStateToProps = state => {
     return {
         events: state.events.events,
-        rooms: state.room.rooms
+        rooms: state.room.rooms,
+        currentColor: state.color.currentColor,
+        err: state.events.err
     }
 }
 

@@ -1,27 +1,26 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import { Button } from 'semantic-ui-react'
-
+import { Button, Modal } from 'semantic-ui-react'
+import SignIn from '../Authorization/SignIn';
+import Registration from '../Authorization/Registration';
 
 
 class LogOutLinks extends Component {
-    // state = {
-    //     showModal: false
-    // }
 
-    // showModal = () => {
-    //     this.setState({ showModal: true })
-    // }
   render() {
     return (
       <div>
-        <Link to ='/signIn'>
-            <Button 
-                color='black'>Sign In</Button>
-        </Link>
-        <Link to ='/signUp'>
-            <Button color='black'>Register</Button>
-        </Link>
+        <Modal 
+          trigger={<Button color='black'>Sign In</Button>}> 
+            <Modal.Content>
+              <SignIn/>
+            </Modal.Content>
+        </Modal>
+        <Modal 
+          trigger={<Button color='black'>Register</Button>}> 
+            <Modal.Content>
+              <Registration />
+            </Modal.Content>
+        </Modal>
       </div>
     )
   }

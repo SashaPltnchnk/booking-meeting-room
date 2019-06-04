@@ -9,13 +9,8 @@ const convert = event => {
     }
 }
 const initialState = {
-    events: [
-        // {
-        //     title: 'AZAZAZ',
-        //     start: new Date(2019, 4, 29, 0, 0, 0),
-        //     end: new Date(2019, 4, 29, 23, 0, 0),
-        // }
-    ]
+    events: [],
+    err: null
 }
 
 const reducer = (state = initialState, action) => {
@@ -36,6 +31,12 @@ const reducer = (state = initialState, action) => {
                    convert(action.data)
                ]
             };
+        case error(actionTypes.ADD_EVENT):
+            // console.log(action.error.response.data.message)
+            return {
+                ...state,
+                err: `Sorry, this time is already ${action.error.response.data.message}`
+            }   
             
         default: return state;
     }  
