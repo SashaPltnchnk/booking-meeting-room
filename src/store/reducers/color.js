@@ -19,7 +19,7 @@ const initialState = {
             color: 'violet'
         },
     ],
-    currentColor: ''
+    currentColor: 'green'
 }
 
 const reducer = (state = initialState, action) => {

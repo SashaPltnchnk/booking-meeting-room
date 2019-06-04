@@ -7,6 +7,7 @@ import { fetchEvents, addEvent, deleteEvent } from '../../store/actions/events'
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import '../../App.css'
 import { Button, Modal, Input } from 'semantic-ui-react'
+import SchedulerModal from "./SchedulerModal";
 
 
 const localizer = BigCalendar.momentLocalizer(moment);
@@ -34,6 +35,7 @@ class Scheduler extends Component {
         userEventId: '',
         title: '',
         slot: null,
+        event: {}
     }
 
     showDeleteModal = dimmer => this.setState({ dimmer, openDeleteEvent: true,  })
@@ -57,6 +59,7 @@ class Scheduler extends Component {
             to: new Date(slot.end).getTime(),
             hall_id: this.props.match.params.roomId,
             user_id: localStorage.getItem('user_id'),
+            eventTitle: '',
             title,
     }
 
@@ -85,10 +88,10 @@ class Scheduler extends Component {
 
   render() {
 
-    const { openDeleteEvent, dimmer, title, openCreateEventModal } = this.state
+    const { openDeleteEvent, dimmer, title, openCreateEventModal, eventTitle } = this.state
     // debugger
 
-    const modalContent = this.props.userId === this.state.userEventId ? <div>yes, SIMILAR </div> : <div> NOT SIMILAR </div>
+    // const modalContent = this.props.userId === this.state.userEventId ? <>Remove reservation?</> : <> {eventTitle}</>
 
     // console.warn('RRRRRRRRRRR', this.props)
     // console.warn('RRRRRRRRRRR', this.state.userEventId)
@@ -111,7 +114,9 @@ class Scheduler extends Component {
                 this.showDeleteModal('blurring');
                 this.setState({
                     eventId: event._id,
-                    userEventId: event.user_id
+                    userEventId: event.user_id,
+                    eventTitle: event.title,
+                    event: event
                 })
             }} 
             onSelectSlot={(slot) => {
@@ -121,28 +126,17 @@ class Scheduler extends Component {
             style={{ height: "80vh", margin: "0 auto"}}
           />
 
+
+          <SchedulerModal 
+            openDeleteEvent={this.state.openDeleteEvent}
+            closeDeleteModal={this.closeDeleteModal}
+            handleDeleteEvent={this.handleDeleteEvent}
+            // modalContent={modalContent}
+            dimmer={dimmer}
+            event={this.state.event}
+            />
     
           
-          
-          <Modal dimmer={dimmer} open={openDeleteEvent} onClose={this.closeDeleteModal}>
-            {/* <Modal.Header>Remove reservation?</Modal.Header> */}
-            <Modal.Header>  {modalContent}</Modal.Header>
-            <Modal.Actions>
-            <Button color='black' onClick={this.closeDeleteModal}>
-                Nope
-            </Button>
-            <Button
-                positive
-                icon='checkmark'
-                labelPosition='right'
-                content="Yes"
-                onClick={() => this.handleDeleteEvent()}
-            />
-            </Modal.Actions>
-          </Modal>
-        // }
-            
-
         <Modal dimmer={dimmer} open={openCreateEventModal} onClose={this.closeCreateModal}>
           <Modal.Header>New Event name</Modal.Header>
           <Modal.Content>
@@ -176,7 +170,7 @@ const mapStateToProps = state => {
         events: state.events.events,
         rooms: state.room.rooms,
         currentColor: state.color.currentColor,
-        userId: state.auth.userId
+        // userId: state.auth.userId
     }
 }
 
