@@ -6,8 +6,10 @@ import { fetchEvents, addEvent, deleteEvent } from '../../store/actions/events'
 
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import '../../App.css'
-import { Button, Modal, Input } from 'semantic-ui-react'
-import SchedulerModal from "./SchedulerModal";
+import DeleteEventModal from "./DeleteEventModal";
+import CreateEventModal from "./CreateEventModal";
+import { Message, Icon } from "semantic-ui-react";
+import MessageError from "./MessageError";
 
 
 const localizer = BigCalendar.momentLocalizer(moment);
@@ -84,21 +86,20 @@ class Scheduler extends Component {
         })
     }
 
-
+     changeHandler = (e) => {
+       this.setState({title: e.target.value})
+     }
 
   render() {
 
-    const { openDeleteEvent, dimmer, title, openCreateEventModal, eventTitle } = this.state
-    // debugger
+    const { openDeleteEvent, dimmer, title, openCreateEventModal } = this.state
 
-    // const modalContent = this.props.userId === this.state.userEventId ? <>Remove reservation?</> : <> {eventTitle}</>
-
-    // console.warn('RRRRRRRRRRR', this.props)
-    // console.warn('RRRRRRRRRRR', this.state.userEventId)
     const newEvents = this.props.events.filter(event => this.props.match.params.roomId === event.hall_id)
+
 
     return (
         <div className={this.props.currentColor}>
+         <MessageError  />
             
           <BigCalendar
             localizer={localizer}
@@ -127,38 +128,24 @@ class Scheduler extends Component {
           />
 
 
-          <SchedulerModal 
-            openDeleteEvent={this.state.openDeleteEvent}
+          <DeleteEventModal 
+            openDeleteEvent={openDeleteEvent}
             closeDeleteModal={this.closeDeleteModal}
             handleDeleteEvent={this.handleDeleteEvent}
-            // modalContent={modalContent}
             dimmer={dimmer}
             event={this.state.event}
             />
     
+
+          <CreateEventModal 
+            dimmer={dimmer}
+            openCreateEventModal={openCreateEventModal}
+            closeCreateModal={this.closeCreateModal}
+            handleSelect={this.handleSelect}
+            changeHandler={this.changeHandler}
+            title={title}
+          />
           
-        <Modal dimmer={dimmer} open={openCreateEventModal} onClose={this.closeCreateModal}>
-          <Modal.Header>New Event name</Modal.Header>
-          <Modal.Content>
-            <Input 
-              fluid 
-              placeholder='event name' 
-              value={title} 
-              onChange={(e) => this.setState({title: e.target.value})}/>         
-          </Modal.Content>
-          <Modal.Actions>
-            <Button color='black' onClick={this.closeCreateModal}>
-              Cancel
-            </Button>
-            <Button
-              positive
-              icon='checkmark'
-              labelPosition='right'
-              content="Add"
-              onClick={() => this.handleSelect()}
-            />
-          </Modal.Actions>
-        </Modal>
         </div>
         
     );
@@ -170,7 +157,7 @@ const mapStateToProps = state => {
         events: state.events.events,
         rooms: state.room.rooms,
         currentColor: state.color.currentColor,
-        // userId: state.auth.userId
+        err: state.events.err
     }
 }
 

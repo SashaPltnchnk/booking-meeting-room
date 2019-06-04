@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Modal, Input } from 'semantic-ui-react'
+import { Button, Modal } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 
 
@@ -30,7 +30,7 @@ class SchedulerModal extends Component {
 
         return (
             <div>
-                <Modal dimmer={dimmer} open={openDeleteEvent} onClose={closeDeleteModal}>
+                <Modal size='mini' dimmer={dimmer} open={openDeleteEvent} onClose={closeDeleteModal}>
                     {modalContent}
                 </Modal>
             </div>

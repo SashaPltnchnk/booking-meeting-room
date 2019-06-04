@@ -35,7 +35,7 @@ const reducer = (state = initialState, action) => {
             // console.log(action.error.response.data.message)
             return {
                 ...state,
-                err: action.error.response.data.message
+                err: `Sorry, this time is already ${action.error.response.data.message}`
             }   
             
         default: return state;
