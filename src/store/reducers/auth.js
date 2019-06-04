@@ -3,7 +3,7 @@ import { error, success } from 'redux-saga-requests';
 
 const initialState = {
   email: null,
-  token: null,
+  token: localStorage.getItem('token'),
   userId: localStorage.getItem('user_id'),
   username: localStorage.getItem('username'),
   isAuth: !!localStorage.getItem('token'),
@@ -60,11 +60,14 @@ const reducer = (state = initialState, action) => {
         }
 
     case actionTypes.LOG_OUT:
+        localStorage.clear();
+        sessionStorage.clear();
         return {
           ...state,
           token: null,
           userId: null,
-          isAuth: null
+          isAuth: null,
+          // err: 'You have to log in or register to have possibility of booking rooms'
         };
 
     default:

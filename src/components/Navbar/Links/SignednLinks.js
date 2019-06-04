@@ -8,8 +8,8 @@ import { Button, Icon, Header } from 'semantic-ui-react'
 class LogInLinks extends Component {
 
   handleLogOut = () => {
-    localStorage.clear();
-    sessionStorage.clear();
+    // localStorage.clear();
+    // sessionStorage.clear();
     this.props.logOut()
     this.props.history.push('/')
   }

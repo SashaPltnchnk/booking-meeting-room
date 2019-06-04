@@ -9,6 +9,7 @@ import '../../App.css'
 import DeleteEventModal from "./DeleteEventModal";
 import CreateEventModal from "./CreateEventModal";
 import MessageError from "./MessageError";
+import { Icon } from "semantic-ui-react";
 
 
 const localizer = BigCalendar.momentLocalizer(moment);
@@ -26,8 +27,16 @@ const formats = {
       momentLocalizer.format(a.start, 'h:mm a', culture)
 }
 
-
-
+const MyEvent = function (props) {
+  const { event } = props;
+  return (
+    <div>
+      {event.user_id === localStorage.getItem('user_id') ? <Icon name='user secret' />  : null}
+      <strong>{event.title}</strong>
+    </div>
+  )
+  }
+  
 class Scheduler extends Component { 
     state = {
         openDeleteEvent: false,
@@ -93,7 +102,22 @@ class Scheduler extends Component {
 
     const { openDeleteEvent, dimmer, title, openCreateEventModal } = this.state
 
-    const newEvents = this.props.events.filter(event => this.props.match.params.roomId === event.hall_id)
+    const newEvents = this.props.events
+    .filter(event => this.props.match.params.roomId === event.hall_id)
+    // .map(event => {
+    //   console.log(event.user_id === localStorage.getItem('user_id'))
+    //   return {
+    //     end: event.end,
+    //     from: event.from,
+    //     hall_id: event.hall_id,
+    //     start: event.start,
+    //     title: event.title,
+    //     to: event.to,
+    //     user_id: event.user_id,
+    //     _id: event._id,
+    //     resource: event.user_id === localStorage.getItem('user_id') ? 'sad' : null
+    //   }
+    // })
 
 
     return (
@@ -124,6 +148,9 @@ class Scheduler extends Component {
                 this.setState({slot})
             }}
             style={{ height: "80vh", margin: "0 auto"}}
+            components = {{ 
+              event: MyEvent
+            }}
           />
 
 

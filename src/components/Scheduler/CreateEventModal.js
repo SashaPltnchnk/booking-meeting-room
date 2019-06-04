@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Button, Modal, Input, Form } from 'semantic-ui-react'
+import { connect } from 'react-redux'
 
 
 class CreateEventModal extends Component {
@@ -7,11 +8,13 @@ class CreateEventModal extends Component {
         // console.warn('RRRR', this.props.err);
         
         const {openCreateEventModal, dimmer, closeCreateModal, changeHandler, handleSelect, title } = this.props
-        return (
-            <div>
-                <Modal size='tiny' dimmer={dimmer} open={openCreateEventModal} onClose={closeCreateModal}>
-                    <Modal.Header>New Event name</Modal.Header>
-                    
+
+
+        let modalContent = <Modal.Header> Sign in or register to have possibility of booking rooms </Modal.Header>
+        if (this.props.isAuth) {
+            modalContent = 
+            <>
+                <Modal.Header>New Event name</Modal.Header>
                     <Modal.Content>
                         <Form onSubmit={() => handleSelect()}>
                             <Form.Field>
@@ -35,13 +38,25 @@ class CreateEventModal extends Component {
                             content="Add"
                             onClick={() => handleSelect()}
                         />
-                    </Modal.Actions>                  
-                 </Modal>
+                    </Modal.Actions>         
+            </>
+        }
+        return (
+            <div>
+                <Modal size='tiny' dimmer={dimmer} open={openCreateEventModal} onClose={closeCreateModal}>
+                    {modalContent}
+                </Modal>
             </div>
         )
     }
 }
 
 
+const mapStateToProps = state => {
+    return {
+        isAuth: state.auth.isAuth
+    }
+}
 
-export default CreateEventModal
+
+export default connect(mapStateToProps)(CreateEventModal)

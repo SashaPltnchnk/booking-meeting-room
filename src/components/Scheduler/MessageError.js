@@ -13,10 +13,6 @@ class MessageError extends Component {
         this.setState({visible: false})
       }
 
-    showMessage = () => {
-
-    }
-
     render () {
         let busy = this.props.err && this.state.visible
         ?  <Message 
