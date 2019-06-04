@@ -8,7 +8,6 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import '../../App.css'
 import DeleteEventModal from "./DeleteEventModal";
 import CreateEventModal from "./CreateEventModal";
-import { Message, Icon } from "semantic-ui-react";
 import MessageError from "./MessageError";
 
 

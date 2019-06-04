@@ -35,11 +35,6 @@ class Authorization extends Component {
         // const userId = this.props.
         e.preventDefault();
         this.props.register({username, password, email})
-            .then((res) => {
-                localStorage.setItem('token', res.data.token)
-                localStorage.setItem('user_id', res.data._id)
-            })
-            // .then(() => this.props.history.push('/'))
     }
 
     render() { 

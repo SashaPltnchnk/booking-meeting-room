@@ -14,7 +14,7 @@ class Navbar extends Component {
 
     const navStyle = {
         display: 'flex',
-        justifyContent: 'space-around'
+        justifyContent: 'space-between'
     }
     return (
       <Header as='h3' dividing>

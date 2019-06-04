@@ -4,7 +4,7 @@ import { Button, Modal, Input, Form } from 'semantic-ui-react'
 
 class CreateEventModal extends Component {
     render() {
-        console.warn('RRRR', this.props.err);
+        // console.warn('RRRR', this.props.err);
         
         const {openCreateEventModal, dimmer, closeCreateModal, changeHandler, handleSelect, title } = this.props
         return (

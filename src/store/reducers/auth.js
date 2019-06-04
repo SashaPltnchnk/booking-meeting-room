@@ -5,7 +5,7 @@ const initialState = {
   email: null,
   token: null,
   userId: localStorage.getItem('user_id'),
-  username: null,
+  username: localStorage.getItem('username'),
   isAuth: !!localStorage.getItem('token'),
   err: null,
 //   loading: false,
@@ -16,11 +16,16 @@ const reducer = (state = initialState, action) => {
 
     case success(actionTypes.REGISTER):
       // console.log(action)
+      const newUser = JSON.parse(action.response.config.data);
+      localStorage.setItem('token', action.data.token)
+      localStorage.setItem('user_id', action.data._id)
+      localStorage.setItem('username', newUser.username)
+
       return {
         ...state,
         // token: action.token,
-        email: action.data.email,
-        username: action.data.username,
+        email: newUser.email,
+        username: newUser.username,
         isAuth: true,
         userId: action.data._id,
         // loading: false
@@ -34,12 +39,15 @@ const reducer = (state = initialState, action) => {
       }
     
     case success(actionTypes.SIGN_IN):
-      console.warn(action);
-      
+      const user = JSON.parse(action.response.config.data);
+      localStorage.setItem('token', action.data.token)
+      localStorage.setItem('user_id', action.data._id)
+      localStorage.setItem('username', user.username)
+
         return {
             ...state,
-            email: action.data.email,
-            username: action.data.username,
+            email: user.email,
+            username: user.username,
             isAuth: true,
             userId: action.data._id,
             // loading: false

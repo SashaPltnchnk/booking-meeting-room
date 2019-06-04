@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { logOut } from '../../../store/actions/auth'
 import { fetchRooms } from '../../../store/actions/room'
 import { withRouter } from 'react-router-dom'
-import { Button } from 'semantic-ui-react'
+import { Button, Icon, Header } from 'semantic-ui-react'
 
 class LogInLinks extends Component {
 
@@ -20,6 +20,13 @@ class LogInLinks extends Component {
   
     return (
       <div>
+        <Button basic >
+            <Header size='tiny'>
+              <Icon name='user secret' size='small' color='black' />
+              {this.props.user}
+            </Header>
+        </Button> 
+        
         <Button color='black' onClick={this.handleLogOut}>Log Out</Button>
       </div>
     )
