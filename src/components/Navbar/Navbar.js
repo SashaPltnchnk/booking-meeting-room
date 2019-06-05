@@ -21,10 +21,10 @@ class Navbar extends Component {
           <div style={navStyle}>
             <Link to='/'><Header size='medium' color='grey'>Бронирование переговорных комнат</Header></Link>
                 {
-                    // !!localStorage.getItem('token')
-                    isAuth
-                    ? <SignedInLinks />
-                    : <SignedOutLinks />
+                  // !!localStorage.getItem('token')
+                  isAuth
+                  ? <SignedInLinks />
+                  : <SignedOutLinks />
                 }
           </div>
       </Header>

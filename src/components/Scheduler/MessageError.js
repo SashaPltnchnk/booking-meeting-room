@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {  Message } from 'semantic-ui-react'
+import {  Message, Icon  } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 
 
@@ -13,11 +13,11 @@ class MessageError extends Component {
     //     this.setState({visible: false})
     //   }
 
-      hideMessage = () => {
-        setTimeout(() => {
-            this.setState({ visible: false })
-          }, 2000)
-      }
+    //   hideMessage = () => {
+    //     setTimeout(() => {
+    //         this.setState({ visible: false })
+    //       }, 2000)
+    //   }
 
     
     
@@ -25,10 +25,24 @@ class MessageError extends Component {
     render () {
         let busy = this.state.visible 
         ?  <Message 
-            onDismiss={this.hideMessage}
-            header={this.props.err}
+            // onDismiss={this.hideMessage}
+            // onDismiss={() => {
+            //     setTimeout(() => {
+            //         this.setState({ visible: false })
+            //       }, 1000)
+            // }}
+            // header={this.props.err}
             color='yellow'> 
-                {/* {this.props.err} */}
+               
+                {this.props.err}
+                <Icon 
+                    name='close' 
+                    onClick={() => {
+                        setTimeout(() => {
+                            this.setState({ visible: false })
+                            }, 1000)
+                    }}
+                    />
             </Message> 
         : null
 

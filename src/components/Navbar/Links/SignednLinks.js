@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { logOut } from '../../../store/actions/auth'
 import { fetchRooms } from '../../../store/actions/room'
 import { withRouter } from 'react-router-dom'
-import { Button, Icon, Header } from 'semantic-ui-react'
+import { Button, Popup } from 'semantic-ui-react'
 
 class LogInLinks extends Component {
 
@@ -17,17 +17,22 @@ class LogInLinks extends Component {
   render() {
     // console.warn('sokisdfojifsokjidfspokdfspokds', this.props)
     // debugger
+
+ 
   
     return (
-      <div>
-        <Button basic >
-            <Header size='tiny'>
-              <Icon name='user secret' size='small' color='black' />
-              {this.props.user}
-            </Header>
-        </Button> 
-        
-        <Button color='black' onClick={this.handleLogOut}>Log Out</Button>
+      <div> 
+          <Popup
+            trigger={ <Button 
+                        color='black'
+                        icon='user secret'
+                        content={this.props.user} /> }
+            content='You'
+            position='left center'
+            size='mini'
+            inverted
+          />
+          <Button color='black' onClick={this.handleLogOut}>Log Out</Button>
       </div>
     )
   }

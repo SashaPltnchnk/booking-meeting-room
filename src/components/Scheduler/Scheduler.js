@@ -129,7 +129,7 @@ class Scheduler extends Component {
             defaultView='work_week'
             events={newEvents}
             selectable
-            // onSelecting={alert('oops')}
+            // onSelecting={() => alert('oops')}
             onSelectEvent={(event) => {
                 this.showDeleteModal('blurring');
                 this.setState({
