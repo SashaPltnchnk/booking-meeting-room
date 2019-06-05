@@ -9,16 +9,26 @@ class MessageError extends Component {
         visible: true
     }
 
-    hideMassage = () => {
-        this.setState({visible: false})
+    // hideMessage = () => {
+    //     this.setState({visible: false})
+    //   }
+
+      hideMessage = () => {
+        setTimeout(() => {
+            this.setState({ visible: false })
+          }, 2000)
       }
 
+    
+    
+
     render () {
-        let busy = this.props.err && this.state.visible
+        let busy = this.state.visible 
         ?  <Message 
-            onDismiss={this.hideMassage}
+            onDismiss={this.hideMessage}
+            header={this.props.err}
             color='yellow'> 
-                {this.props.err}
+                {/* {this.props.err} */}
             </Message> 
         : null
 

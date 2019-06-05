@@ -31,7 +31,7 @@ const MyEvent = function (props) {
   const { event } = props;
   return (
     <div>
-      {event.user_id === localStorage.getItem('user_id') ? <Icon name='user secret' />  : null}
+      {event.user_id === localStorage.getItem('user_id') ? <div><Icon name='user secret' /></div>  : null}
       <strong>{event.title}</strong>
     </div>
   )
@@ -61,6 +61,7 @@ class Scheduler extends Component {
     }
 
     handleSelect = () => {
+
         const {title, slot} = this.state
         // console.warn(this.props.match.params.roomId);
 
@@ -98,31 +99,25 @@ class Scheduler extends Component {
        this.setState({title: e.target.value})
      }
 
+    //  handleSelecting = () => {
+    //   (range: { start: Date, end: Date }) => false
+    //  }
+
   render() {
 
     const { openDeleteEvent, dimmer, title, openCreateEventModal } = this.state
 
     const newEvents = this.props.events
     .filter(event => this.props.match.params.roomId === event.hall_id)
-    // .map(event => {
-    //   console.log(event.user_id === localStorage.getItem('user_id'))
-    //   return {
-    //     end: event.end,
-    //     from: event.from,
-    //     hall_id: event.hall_id,
-    //     start: event.start,
-    //     title: event.title,
-    //     to: event.to,
-    //     user_id: event.user_id,
-    //     _id: event._id,
-    //     resource: event.user_id === localStorage.getItem('user_id') ? 'sad' : null
-    //   }
-    // })
+   
+
+    let warning = this.props.err ? <MessageError  /> : null
 
 
     return (
         <div className={this.props.currentColor}>
-         <MessageError  />
+         
+         {warning}
             
           <BigCalendar
             localizer={localizer}
@@ -134,6 +129,7 @@ class Scheduler extends Component {
             defaultView='work_week'
             events={newEvents}
             selectable
+            // onSelecting={alert('oops')}
             onSelectEvent={(event) => {
                 this.showDeleteModal('blurring');
                 this.setState({

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { register } from '../../../store/actions/auth'
-import { fetchRooms } from '../../../store/actions/room'
 import Form from './FormAuth'
 import { Message } from 'semantic-ui-react'
 
@@ -44,7 +43,7 @@ class Authorization extends Component {
         let showError  = this.props.error 
             ? <Message warning>
                 <Message.Header>{error}</Message.Header>
-                </Message> 
+            </Message> 
             : null
         return ( 
 
@@ -68,6 +67,6 @@ const mapStateToProps = state => {
 }
 
 
-const mapDispatchToProps = { register, fetchRooms };
+const mapDispatchToProps = { register };
  
 export default connect(mapStateToProps, mapDispatchToProps)(Authorization);

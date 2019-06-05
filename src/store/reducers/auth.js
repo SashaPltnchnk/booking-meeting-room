@@ -44,14 +44,14 @@ const reducer = (state = initialState, action) => {
       localStorage.setItem('user_id', action.data._id)
       localStorage.setItem('username', user.username)
 
-        return {
-            ...state,
-            email: user.email,
-            username: user.username,
-            isAuth: true,
-            userId: action.data._id,
-            // loading: false
-            };
+      return {
+          ...state,
+          email: user.email,
+          username: user.username,
+          isAuth: true,
+          userId: action.data._id,
+          // loading: false
+          };
     case error(actionTypes.SIGN_IN):
         // console.warn(action.error.response.data.message)
         return {
