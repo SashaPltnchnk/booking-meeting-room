@@ -3,11 +3,7 @@ import Rooms from '../Layout/Rooms/Rooms';
 
 
 const Dashboard = () => {
-    return (
-        <div>
-            <Rooms />
-        </div>
-    )
+    return <Rooms />
 }
 
 export default Dashboard

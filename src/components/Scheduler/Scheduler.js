@@ -30,10 +30,10 @@ const formats = {
 const MyEvent = function (props) {
   const { event } = props;
   return (
-    <div>
-      {event.user_id === localStorage.getItem('user_id') ? <div><Icon name='user secret' /></div>  : null}
+    <>
+      {event.user_id === localStorage.getItem('user_id') ? <Icon name='user secret' />  : null}
       <strong>{event.title}</strong>
-    </div>
+    </>
   )
   }
   
@@ -45,7 +45,8 @@ class Scheduler extends Component {
         userEventId: '',
         title: '',
         slot: null,
-        event: {}
+        event: {},
+        isTimeError: false
     }
 
     showDeleteModal = dimmer => this.setState({ dimmer, openDeleteEvent: true,  })
@@ -65,7 +66,17 @@ class Scheduler extends Component {
         const {title, slot} = this.state
         // console.warn(this.props.match.params.roomId);
 
-        const dataToSend = {
+        let dataToSend = slot.start === slot.end
+        ? {
+          from: new Date(slot.start).getTime(),
+          to: new Date(slot.end).setHours(23, 59, 59),
+          hall_id: this.props.match.params.roomId,
+          user_id: localStorage.getItem('user_id'),
+          eventTitle: '',
+          title,
+          }
+
+        :  {
             from: new Date(slot.start).getTime(),
             to: new Date(slot.end).getTime(),
             hall_id: this.props.match.params.roomId,
@@ -73,6 +84,16 @@ class Scheduler extends Component {
             eventTitle: '',
             title,
     }
+    // console.log(new Date(slot.start).setHours(23, 59, 59))
+
+    // const dataToSend = {
+    //   from: new Date(slot.start).getTime(),
+    //   to: new Date(slot.end).getTime(),
+    //   hall_id: this.props.match.params.roomId,
+    //   user_id: localStorage.getItem('user_id'),
+    //   eventTitle: '',
+    //   title,
+// }
 
     this.props.addEvent(dataToSend)
      
@@ -102,16 +123,19 @@ class Scheduler extends Component {
    onSelectSlotHandler = (slot) => {
     this.setState({slot}) 
     
-
-    let currentTime = Date.now();
+    var currentTime = Date.now();
     // console.warn(currentTime);
 
-    let eventTime = new Date(slot.start).getTime()
+    var eventTime = new Date(slot.start).getTime()
     // console.warn(eventTime);
     
     if (eventTime > currentTime) {
       this.showCreateModal('blurring')
     }    
+
+    // if(eventTime < currentTime) {
+    //   const pastTime = <MessageError content={'Share your Time Machine, Dude!'}/>
+    // }
    }
 
   render() {
@@ -124,18 +148,20 @@ class Scheduler extends Component {
 
     let warning = this.props.err ? <MessageError content={this.props.err}/> : null
 
+    // let pastTime = eventTime < currentTime ? <MessageError content={'Share your Time Machine, Dude!'}/> : null
+
 
     return (
         <div className={this.props.currentColor}>
          
          {warning}
-
+        {/* {pastTime} */}
             
           <BigCalendar
             localizer={localizer}
             defaultDate={new Date()}
             min={moment('9:00am', 'h:mma').toDate()}
-            max={moment('6:00pm', 'h:mma').toDate()}
+            max={moment('7:00pm', 'h:mma').toDate()}
             formats={formats}
             views={allViews}
             defaultView='work_week'

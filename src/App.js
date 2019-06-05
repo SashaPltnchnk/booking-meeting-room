@@ -9,7 +9,7 @@ import { Container } from 'semantic-ui-react'
 
 function App() {
   const containerStyle = {
-    marginTop: '15px'
+    paddingTop: '20px'
   }
   return (
     <BrowserRouter >

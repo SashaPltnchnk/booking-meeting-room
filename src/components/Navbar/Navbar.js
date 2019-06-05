@@ -19,7 +19,7 @@ class Navbar extends Component {
     return (
       <Header as='h3' dividing>
           <div style={navStyle}>
-            <Link to='/'><Header size='medium' color='grey'>Бронирование переговорных комнат</Header></Link>
+            <Link to='/'><Header size='medium' color='grey'>Booking negotiation rooms</Header></Link>
                 {
                   // !!localStorage.getItem('token')
                   isAuth
