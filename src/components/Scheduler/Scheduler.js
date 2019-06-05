@@ -99,9 +99,20 @@ class Scheduler extends Component {
        this.setState({title: e.target.value})
      }
 
-    //  handleSelecting = () => {
-    //   (range: { start: Date, end: Date }) => false
-    //  }
+   onSelectSlotHandler = (slot) => {
+    this.setState({slot}) 
+    
+
+    let currentTime = Date.now();
+    // console.warn(currentTime);
+
+    let eventTime = new Date(slot.start).getTime()
+    // console.warn(eventTime);
+    
+    if (eventTime > currentTime) {
+      this.showCreateModal('blurring')
+    }    
+   }
 
   render() {
 
@@ -111,13 +122,14 @@ class Scheduler extends Component {
     .filter(event => this.props.match.params.roomId === event.hall_id)
    
 
-    let warning = this.props.err ? <MessageError  /> : null
+    let warning = this.props.err ? <MessageError content={this.props.err}/> : null
 
 
     return (
         <div className={this.props.currentColor}>
          
          {warning}
+
             
           <BigCalendar
             localizer={localizer}
@@ -140,8 +152,7 @@ class Scheduler extends Component {
                 })
             }} 
             onSelectSlot={(slot) => {
-                this.showCreateModal('blurring')
-                this.setState({slot})
+                this.onSelectSlotHandler(slot)
             }}
             style={{ height: "80vh", margin: "0 auto"}}
             components = {{ 

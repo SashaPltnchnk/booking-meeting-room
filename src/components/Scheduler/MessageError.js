@@ -34,7 +34,7 @@ class MessageError extends Component {
             // header={this.props.err}
             color='yellow'> 
                
-                {this.props.err}
+                {this.props.content}
                 <Icon 
                     name='close' 
                     onClick={() => {
