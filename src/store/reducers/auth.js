@@ -50,6 +50,7 @@ const reducer = (state = initialState, action) => {
           username: user.username,
           isAuth: true,
           userId: action.data._id,
+          err: null
           // loading: false
           };
     case error(actionTypes.SIGN_IN):
