@@ -1,6 +1,7 @@
 export const FETCH_EVENTS = 'FETCH_EVENTS';
 export const ADD_EVENT = 'ADD_EVENT';
 export const DELETE_EVENT = 'DELETE_EVENT';
+export const REMOVE_ERROR = 'REMOVE_ERROR';
 
 
 export const fetchEvents = () => ({
@@ -33,3 +34,9 @@ export const deleteEvent = (id) => ({
         asPromise: true
     }
 });
+
+
+export const removeError = () => dispatch => {
+    // console.warn(color);
+        return dispatch({ type: REMOVE_ERROR,  });
+}

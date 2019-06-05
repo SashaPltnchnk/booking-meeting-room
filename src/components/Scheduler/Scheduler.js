@@ -131,7 +131,9 @@ class Scheduler extends Component {
     
     if (eventTime > currentTime) {
       this.showCreateModal('blurring')
-    }    
+    }  else {
+      alert('alo')
+    }
 
     // if(eventTime < currentTime) {
     //   const pastTime = <MessageError content={'Share your Time Machine, Dude!'}/>
@@ -146,7 +148,7 @@ class Scheduler extends Component {
     .filter(event => this.props.match.params.roomId === event.hall_id)
    
 
-    let warning = this.props.err ? <MessageError content={this.props.err}/> : null
+    // let warning = this.props.err ? <MessageError content={this.props.err}/> : null
 
     // let pastTime = eventTime < currentTime ? <MessageError content={'Share your Time Machine, Dude!'}/> : null
 
@@ -154,7 +156,8 @@ class Scheduler extends Component {
     return (
         <div className={this.props.currentColor}>
          
-         {warning}
+         {/* {warning} */}
+         <MessageError content={this.props.err}/>
         {/* {pastTime} */}
             
           <BigCalendar

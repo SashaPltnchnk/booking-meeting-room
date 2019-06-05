@@ -38,6 +38,12 @@ const reducer = (state = initialState, action) => {
                 // err: `Sorry, this time is already ${action.error.response.data.message}`,
                 err: action.error.response.data.message
             }   
+        case actionTypes.REMOVE_ERROR:
+            return {
+              ...state,
+              err: null
+            };
+    
             
         default: return state;
     }  

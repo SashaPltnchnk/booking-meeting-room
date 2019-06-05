@@ -1,17 +1,18 @@
 import React, { Component } from 'react'
-import {  Message  } from 'semantic-ui-react'
+import {  Message, Icon  } from 'semantic-ui-react'
 import { connect } from 'react-redux'
+import { removeError } from '../../store/actions/events'
 
 
 
 class MessageError extends Component {
-    state = {
-        visible: true
-    }
+    // state = {
+    //     visible: true
+    // }
 
-    hideMessage = () => {
-        this.setState({visible: false})
-      }
+    // hideMessage = () => {
+    //     this.setState({visible: false})
+    //   }
 
     //   hideMessage = () => {
     //     setTimeout(() => {
@@ -23,9 +24,9 @@ class MessageError extends Component {
     
 
     render () {
-        let busy = this.state.visible 
+        let busy = this.props.err
         ?  <Message 
-            onDismiss={this.hideMessage}
+            onDismiss={this.props.removeError}
             // onDismiss={() => {
             //     setTimeout(() => {
             //         this.setState({ visible: false })
@@ -33,15 +34,11 @@ class MessageError extends Component {
             // }}
             header={this.props.err}
             color='yellow'> 
-               
-                {/* {this.props.content} */}
-                {/* <Icon 
+{/*                
+                {this.props.content} 
+                 <Icon 
                     name='close' 
-                    onClick={() => {
-                        setTimeout(() => {
-                            this.setState({ visible: false })
-                            }, 1000)
-                    }}
+                    onClick={this.props.removeError}
                     /> */}
             </Message> 
         : null
@@ -63,4 +60,6 @@ const mapStateToProps = state => {
     }  
 }
 
-export default connect(mapStateToProps)(MessageError)
+const mapDispatchToProps = { removeError }
+
+export default connect(mapStateToProps, mapDispatchToProps)(MessageError)
