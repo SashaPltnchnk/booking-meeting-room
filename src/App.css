@@ -68,3 +68,10 @@
 
 .violet .rbc-current-time-indicator {
     background-color: rgb(75, 37, 100); }
+
+
+
+ .special-day {
+    cursor: not-allowed;
+    background-color: #e9e9e9c0;
+} 

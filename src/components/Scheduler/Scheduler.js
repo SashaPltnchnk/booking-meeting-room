@@ -84,16 +84,6 @@ class Scheduler extends Component {
             eventTitle: '',
             title,
     }
-    // console.log(new Date(slot.start).setHours(23, 59, 59))
-
-    // const dataToSend = {
-    //   from: new Date(slot.start).getTime(),
-    //   to: new Date(slot.end).getTime(),
-    //   hall_id: this.props.match.params.roomId,
-    //   user_id: localStorage.getItem('user_id'),
-    //   eventTitle: '',
-    //   title,
-// }
 
     this.props.addEvent(dataToSend)
      
@@ -131,14 +121,13 @@ class Scheduler extends Component {
     
     if (eventTime > currentTime) {
       this.showCreateModal('blurring')
-    }  else {
-      alert('alo')
-    }
-
-    // if(eventTime < currentTime) {
-    //   const pastTime = <MessageError content={'Share your Time Machine, Dude!'}/>
-    // }
+    }  
+      // else {
+      //   alert('alo, share ur time machine')
+      // }
    }
+
+   
 
   render() {
 
@@ -146,31 +135,57 @@ class Scheduler extends Component {
 
     const newEvents = this.props.events
     .filter(event => this.props.match.params.roomId === event.hall_id)
-   
 
-    // let warning = this.props.err ? <MessageError content={this.props.err}/> : null
+    // const customSlotPropGetter = date => {
+    //   var currentTime = Date.now();
 
-    // let pastTime = eventTime < currentTime ? <MessageError content={'Share your Time Machine, Dude!'}/> : null
+    //   if (date.getTime() < currentTime)
+    //     return {
+    //       className: 'special-day',
+    //       style: {
+    //        cursor: 'not-allowed', // whu doesnt workkkkkkk
+    //        backgroundColor: '#e9e9e9'
+    //       },
+    //     }
+    //   else return {}
+    //   }
+
+
+    const customDayPropGetter = date => {
+      var currentTime = Date.now();
+    // console.warn(date.getTime());
+
+      if (date.getTime() < currentTime)
+        return {
+          className: 'special-day',
+          // style: {
+          //  cursor: 'not-allowed', 
+          //  backgroundColor: '#e9e9e9c0'
+          // },
+        }
+      else return {}
+      }
 
 
     return (
         <div className={this.props.currentColor}>
          
-         {/* {warning} */}
+
          <MessageError content={this.props.err}/>
-        {/* {pastTime} */}
+
             
           <BigCalendar
             localizer={localizer}
             defaultDate={new Date()}
             min={moment('9:00am', 'h:mma').toDate()}
-            max={moment('7:00pm', 'h:mma').toDate()}
+            max={moment('6:00pm', 'h:mma').toDate()}
             formats={formats}
             views={allViews}
             defaultView='work_week'
             events={newEvents}
+            dayPropGetter={customDayPropGetter}
+            // slotPropGetter={customSlotPropGetter}
             selectable
-            // onSelecting={() => alert('oops')}
             onSelectEvent={(event) => {
                 this.showDeleteModal('blurring');
                 this.setState({
