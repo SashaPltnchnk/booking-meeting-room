@@ -1,3 +1,69 @@
+button {
+    background-color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    display: inline-block;
+    min-height: 1em;
+    outline: 0;
+    /* border: 1px solid black; */
+    border: none;
+    vertical-align: baseline;
+    border-radius: .28571429rem;
+    margin: 0 .25em 0 0;
+    padding: .78571429em 1.5em .78571429em;
+    text-transform: none;
+    font-weight: 700;
+    line-height: 1em;
+    font-style: normal;
+    text-align: center;
+    text-decoration: none;
+    border-radius: .28571429rem;
+    box-shadow: 0 0 0 1px transparent inset;
+    /* width: 70px;
+    height: 50px; */
+}
+
+
+.green button {
+    background-color: rgba(159, 204, 159, 0.37); 
+}
+
+.red button {
+    background-color: rgba(206, 166, 161, 0.507);; 
+}
+
+.blue button  {
+    background-color: rgba(175, 209, 224, 0.541); 
+}
+
+.violet button {
+    background-color: rgba(179, 138, 207, 0.589); 
+}
+
+
+
+.green button:active, .green button:focus, .green button:hover {
+    /* background-color: rgb(98, 155, 98); */
+    box-shadow: 3px 3px 13px -2px rgba(134,184,133,1);
+ }
+
+.red button:active, .red button:focus, .red button:hover {
+    box-shadow: 3px 3px 13px -2px rgba(206,166,161,1);
+    
+ }
+ 
+.blue button:active, .blue button:focus, .blue button:hover {
+    box-shadow: 3px 3px 13px -2px rgba(174,209,224,1);
+ }
+
+.violet button:active, .violet button:focus, .violet button:hover {
+    box-shadow: 3px 3px 13px -2px rgba(181,138,207,1);  
+ }
+
+
+
+
+
 
 .green .rbc-today {
     background-color: rgba(159, 204, 159, 0.37); }
@@ -69,7 +135,40 @@
 .violet .rbc-current-time-indicator {
     background-color: rgb(75, 37, 100); }
 
+/* .green .rbc-toolbar button:active, .rbc-toolbar button.rbc-active {
+    background-color: rgb(98, 155, 98);
+    border-color: rgb(51, 77, 51); }
+ .green .rbc-toolbar button:active:hover, .rbc-toolbar button:active:focus, .rbc-toolbar button.rbc-active:hover, .rbc-toolbar button.rbc-active:focus {
+        color: #373a3c;
+        background-color: rgb(109, 165, 109);    НЕ НУЖНО
+        background-color: rgb(98, 155, 98);
+        border-color: rgb(91, 146, 91); }
+ .green .rbc-toolbar button:focus {
+    color: #373a3c;
+    background-color: rgb(109, 165, 109);;
+    border-color: rgb(91, 146, 91); }
+ .green .rbc-toolbar button:hover {
+    color: #373a3c;
+    background-color: rgb(109, 165, 109);;
+    border-color: rgb(91, 146, 91); }
 
+.red .rbc-toolbar button:active, .rbc-toolbar button.rbc-active {
+    background-color: rgb(196, 123, 114);
+    border-color: rgb(97, 52, 46); }
+    .rbc-toolbar button:active:hover, .rbc-toolbar button:active:focus, .rbc-toolbar button.rbc-active:hover, .rbc-toolbar button.rbc-active:focus {
+        color: #373a3c;
+        background-color: rgb(109, 165, 109);   НЕ НУЖНО
+        background-color: rgb(196, 123, 114);
+        border-color: rgb(97, 52, 46); }
+    .rbc-toolbar button:focus {
+    color: #373a3c;
+    background-color: rgb(196, 123, 114);
+    border-color: rgb(97, 52, 46); }
+    .rbc-toolbar button:hover {
+    color: #373a3c;
+    background-color: rgb(196, 123, 114);
+    border-color: rgb(97, 52, 46); } */
+    
 
  .special-day {
     cursor: not-allowed;

@@ -23,16 +23,20 @@ class Room extends Component {
     render() { 
        const {colorName, id} = this.props;
         return ( 
-            <>
+            <div className={colorName}>
                 <NavLink 
                     to ={`/room/${id}`}
                     >
-                    <Button 
+                    <button 
+                    // active
+                        // size='large'
                         onClick={() => this.handleSettingColor(colorName)} 
-                        color={colorName}>{colorName}
-                    </Button>
+                        // color={colorName}
+                        className={colorName}
+                    >{colorName}
+                    </button>
                 </NavLink>         
-            </>
+            </div>
          );
     }
 }
