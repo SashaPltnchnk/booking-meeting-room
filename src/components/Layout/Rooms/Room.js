@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { NavLink, withRouter } from 'react-router-dom'
-import { Button } from 'semantic-ui-react'
+// import { Button } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { setCurrentColor } from '../../../store/actions/color'
 

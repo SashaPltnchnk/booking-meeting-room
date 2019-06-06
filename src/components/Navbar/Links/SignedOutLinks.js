@@ -10,12 +10,14 @@ class LogOutLinks extends Component {
     return (
       <div>
         <Modal 
+          size='tiny'
           trigger={<Button color='black'>Sign In</Button>}> 
             <Modal.Content>
               <SignIn/>
             </Modal.Content>
         </Modal>
         <Modal 
+          size='tiny'
           trigger={<Button color='black'>Register</Button>}> 
             <Modal.Content>
               <Registration />

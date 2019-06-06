@@ -174,3 +174,11 @@ button {
     cursor: not-allowed;
     background-color: #e9e9e9c0;
 } 
+
+
+.rbc-allday-cell {
+    display: none;
+  }
+  .rbc-time-view .rbc-header {
+    border-bottom: none;
+  }

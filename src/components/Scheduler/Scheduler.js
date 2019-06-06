@@ -62,14 +62,15 @@ class Scheduler extends Component {
     }
 
     handleSelect = () => {
+      
 
         const {title, slot} = this.state
+        // console.log(slot.start,slot.end)
         // console.warn(this.props.match.params.roomId);
-
         let dataToSend = slot.start === slot.end
         ? {
-          from: new Date(slot.start).getTime(),
-          to: new Date(slot.end).setHours(23, 59, 59),
+          from: new Date(slot.start).setHours(9, 0, 0),
+          to: new Date(slot.end).setHours(19, 0, 0),
           hall_id: this.props.match.params.roomId,
           user_id: localStorage.getItem('user_id'),
           eventTitle: '',
@@ -157,16 +158,12 @@ class Scheduler extends Component {
 
       if (date.getTime() < currentTime)
         return {
-          className: 'special-day',
-          // style: {
-          //  cursor: 'not-allowed', 
-          //  backgroundColor: '#e9e9e9c0'
-          // },
+          className: 'special-day'
         }
       else return {}
       }
 
-
+// console.log(allViews)
     return (
         <div className={this.props.currentColor}>
          
@@ -178,9 +175,10 @@ class Scheduler extends Component {
             localizer={localizer}
             defaultDate={new Date()}
             min={moment('9:00am', 'h:mma').toDate()}
-            max={moment('6:00pm', 'h:mma').toDate()}
+            max={moment('5:59pm', 'h:mma').toDate()}
             formats={formats}
             views={allViews}
+            // views={['week', 'day']}
             defaultView='work_week'
             events={newEvents}
             dayPropGetter={customDayPropGetter}
