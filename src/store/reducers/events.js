@@ -43,6 +43,12 @@ const reducer = (state = initialState, action) => {
               ...state,
               err: null
             };
+        case actionTypes.ADD_ERROR:
+            console.log(action.error)
+            return {
+                ...state,
+                err: action.error
+            }
     
             
         default: return state;

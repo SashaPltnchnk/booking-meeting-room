@@ -68,7 +68,7 @@ const reducer = (state = initialState, action) => {
           token: null,
           userId: null,
           isAuth: null,
-          // err: 'You have to log in or register to have possibility of booking rooms'
+          err: null
         };
 
     default:

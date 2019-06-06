@@ -28,7 +28,8 @@
     "redux-saga-requests-axios": "^0.7.6",
     "redux-thunk": "^2.3.0",
     "semantic-ui-css": "^2.4.1",
-    "semantic-ui-react": "^0.87.1"
+    "semantic-ui-react": "^0.87.1",
+    "yup": "^0.27.0"
   },
   "scripts": {
     "start": "react-scripts start",
