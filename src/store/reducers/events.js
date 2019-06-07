@@ -10,7 +10,8 @@ const convert = event => {
 }
 const initialState = {
     events: [],
-    err: null
+    err: null,
+    errValidation: null
 }
 
 const reducer = (state = initialState, action) => {
@@ -43,12 +44,12 @@ const reducer = (state = initialState, action) => {
               ...state,
               err: null
             };
-        case actionTypes.ADD_ERROR:
-            console.log(action.error)
-            return {
-                ...state,
-                err: action.error
-            }
+        // case actionTypes.ADD_ERROR:
+        //     console.log(action)
+        //     return {
+        //         ...state,
+        //         errValidation: action.error
+        //     }
     
             
         default: return state;

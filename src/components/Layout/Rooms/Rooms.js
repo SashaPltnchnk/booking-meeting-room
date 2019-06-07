@@ -21,7 +21,7 @@ class Rooms extends Component {
     render() {
         const { rooms, colors } = this.props
         // console.warn(rooms);
-        console.log(this.props)
+        // console.log(this.props)
 
         
         const roomStyle = {

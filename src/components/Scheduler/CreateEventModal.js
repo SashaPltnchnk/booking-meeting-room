@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Modal, Input, Form } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import { addError } from '../../store/actions/events'
+// import { addError } from '../../store/actions/events'
 
 
 import schema from './form-schema'
@@ -22,7 +22,7 @@ export const asyncValidate = value => {
             })
             .catch(err => {
                 console.log(err.errors)
-                addError(err.errors)
+                // addError(err.errors)
 
             })
     });
@@ -37,7 +37,7 @@ class CreateEventModal extends Component {
         const {openCreateEventModal, dimmer, closeCreateModal, changeHandler, handleSelect, title } = this.props
 
 
-        let modalContent = <Modal.Header> Sign in or register to have possibility of booking rooms </Modal.Header>
+        let modalContent = <Modal.Header> Sign in or register to have possibility of booking negotiation rooms </Modal.Header>
         if (this.props.isAuth) {
             modalContent = 
             <>
@@ -87,7 +87,7 @@ const mapStateToProps = state => {
     }
 }
 
-const mapDispatchToProps = { addError }
+// const mapDispatchToProps = { addError }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateEventModal)
+export default connect(mapStateToProps)(CreateEventModal)

@@ -20,7 +20,7 @@ const rootReducer = combineReducers({
     events: eventsReducer,
     auth: authReducer,
     room: roomsReducer,
-    color: colorReducer
+    color: colorReducer,
 });
 
 /*

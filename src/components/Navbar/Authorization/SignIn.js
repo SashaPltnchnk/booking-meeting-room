@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { signIn } from '../../../store/actions/auth'
 import Form from './FormAuth'
 import { Message } from 'semantic-ui-react'
+import schema from './form-schema';
 
 
 class SignIn extends Component {
@@ -11,7 +12,8 @@ class SignIn extends Component {
             username: '',
             email: '',
             password: ''
-        }
+        },
+        errors: ''
      }
 
      changeHandler = (e) => {
@@ -30,14 +32,23 @@ class SignIn extends Component {
 
     submitHandler = (e) => {
         const {username, email, password} = this.state.form
+        const {signIn,} = this.props
         e.preventDefault();
-        // debugger
-        this.props.signIn({username, password, email})
+        console.log(this.state.form)
+        schema.validate(this.state.form, {abortEarly: false})
+            .then(() => {
+                signIn({username, password, email})
+                this.setState({errors: ''})
+            })
+            .catch(err => {
+                this.setState({errors: err.errors})
+            })
     }
 
     render() { 
         // console.log('WArb',this.props.res)
         const { error } = this.props
+        const {errors} = this.state
 
         let showError  = this.props.error 
         ? <Message warning>
@@ -46,6 +57,7 @@ class SignIn extends Component {
         : null
         return ( 
             <>  
+                {errors && <Message warning>{errors}</Message>}
                 {showError}
                 <Form 
                     changeHandler={this.changeHandler}
@@ -53,6 +65,7 @@ class SignIn extends Component {
                     buttonName={'Sign In'}
                     form={this.state.form}
                 />
+                
             </>     
          );
     }
@@ -60,7 +73,7 @@ class SignIn extends Component {
 
 const mapStateToProps = state => {
     return {
-        error: state.auth.err
+        error: state.auth.err,
     }
 }
 

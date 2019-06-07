@@ -2,7 +2,7 @@ export const FETCH_EVENTS = 'FETCH_EVENTS';
 export const ADD_EVENT = 'ADD_EVENT';
 export const DELETE_EVENT = 'DELETE_EVENT';
 export const REMOVE_ERROR = 'REMOVE_ERROR';
-export const ADD_ERROR = 'ADD_ERROR';
+// export const ADD_ERROR = 'ADD_ERROR';
 
 
 export const fetchEvents = () => ({
@@ -38,11 +38,10 @@ export const deleteEvent = (id) => ({
 
 
 export const removeError = () => dispatch => {
-    // console.warn(color);
         return dispatch({ type: REMOVE_ERROR,  });
 }
 
-export const addError = (error) => dispatch => {
-    // console.warn(color);
-        return dispatch({ type: ADD_ERROR, error });
-}
+// export const addError = (error) => dispatch => {
+//     console.warn(error);
+//         return dispatch({ type: ADD_ERROR, error });
+// }

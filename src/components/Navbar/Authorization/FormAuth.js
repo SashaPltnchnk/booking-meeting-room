@@ -50,5 +50,7 @@ const formAuth = ({buttonName, submitHandler, form, changeHandler}) => {
         </>
      );
   };
+
+
   
   export default formAuth;

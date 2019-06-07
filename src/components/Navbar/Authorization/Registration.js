@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { register } from '../../../store/actions/auth'
 import Form from './FormAuth'
 import { Message } from 'semantic-ui-react'
+import schema from './form-schema';
 
 
 class Authorization extends Component {
@@ -11,7 +12,8 @@ class Authorization extends Component {
             username: '',
             email: '',
             password: ''
-        }
+        },
+        errors: ''
      }
 
      changeHandler = (e) => {
@@ -31,14 +33,23 @@ class Authorization extends Component {
     submitHandler = (e) => {
         console.log(this.props)
         const {username, email, password} = this.state.form
-        // const userId = this.props.
+        const {register} = this.props
         e.preventDefault();
-        this.props.register({username, password, email})
+        console.log(this.state.form)
+        schema.validate(this.state.form, {abortEarly: false})
+            .then(() => {
+                register({username, password, email})
+                this.setState({errors: ''})
+            })
+            .catch(err => {
+                this.setState({errors: err.errors})
+            })
     }
 
     render() { 
         // console.log('WArb',this.props.response)
         const { error} = this.props
+        const {errors} = this.state
 
         let showError  = this.props.error 
             ? <Message warning>
@@ -48,6 +59,7 @@ class Authorization extends Component {
         return ( 
 
             <>
+                {errors && <Message warning>{errors}</Message>}
                 {showError}
                 <Form 
                     changeHandler={this.changeHandler}
