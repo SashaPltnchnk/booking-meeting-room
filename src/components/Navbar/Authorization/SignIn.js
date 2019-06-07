@@ -34,7 +34,6 @@ class SignIn extends Component {
         const {username, email, password} = this.state.form
         const {signIn,} = this.props
         e.preventDefault();
-        console.log(this.state.form)
         schema.validate(this.state.form, {abortEarly: false})
             .then(() => {
                 signIn({username, password, email})
@@ -46,9 +45,8 @@ class SignIn extends Component {
     }
 
     render() { 
-        // console.log('WArb',this.props.res)
         const { error } = this.props
-        const {errors} = this.state
+        const {errors, form} = this.state
 
         let showError  = this.props.error 
         ? <Message warning>
@@ -63,7 +61,7 @@ class SignIn extends Component {
                     changeHandler={this.changeHandler}
                     submitHandler={this.submitHandler}
                     buttonName={'Sign In'}
-                    form={this.state.form}
+                    form={form}
                 />
                 
             </>     

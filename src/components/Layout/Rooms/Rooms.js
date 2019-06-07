@@ -8,22 +8,12 @@ import Room  from './Room'
 class Rooms extends Component {
 
     async componentDidMount() {
-        
         this.props.fetchRooms()
-        // // console.log(this.props)
-        //     .then(() =>
-        //     this.props.history.push('/room'))
-            // .then(result => {
-            //     //ЗАПУШИТЬ В ИСТОРИЮ РЕАКТ-РОУТЕРА И ВЫВЕСТИ ПО ДЕФЛТУ
-            // })
     }
     
     render() {
         const { rooms, colors } = this.props
-        // console.warn(rooms);
-        // console.log(this.props)
 
-        
         const roomStyle = {
             display: 'flex',
             justifyContent: 'space-between',

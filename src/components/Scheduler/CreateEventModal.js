@@ -5,13 +5,12 @@ import { connect } from 'react-redux'
 
 class CreateEventModal extends Component {
     render() {
-        // console.warn('RRRR', this.props.err);
         
-        const {openCreateEventModal, dimmer, closeCreateModal, changeHandler, handleSelect, title, errors } = this.props
+        const {openCreateEventModal, dimmer, closeCreateModal, changeHandler, handleSelect, title, errors, isAuth } = this.props
 
 
         let modalContent = <Modal.Header> Sign in or register to have possibility of booking negotiation rooms </Modal.Header>
-        if (this.props.isAuth) {
+        if (isAuth) {
             modalContent = 
             <>
                
@@ -62,8 +61,6 @@ const mapStateToProps = state => {
         isAuth: state.auth.isAuth
     }
 }
-
-// const mapDispatchToProps = { addError }
 
 
 export default connect(mapStateToProps)(CreateEventModal)

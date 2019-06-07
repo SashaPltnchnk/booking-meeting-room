@@ -11,9 +11,9 @@ class MessageError extends Component {
     render () {
         let busy = this.props.err
         ?  <Message 
-            onDismiss={this.props.removeError}
-            header={this.props.err}
-            color='yellow'> 
+                onDismiss={this.props.removeError}
+                header={this.props.err}
+                color='yellow'> 
             </Message> 
         : null
 

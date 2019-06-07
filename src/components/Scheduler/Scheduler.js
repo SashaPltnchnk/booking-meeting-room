@@ -75,10 +75,6 @@ class Scheduler extends Component {
       title,
     }
 
-    // debugger
-    console.log(schema)
-    console.log(title)
-console.log(dataToSend)
   schema.validate({title}, {abortEarly: false})
     .then(() => {
       this.props.addEvent(dataToSend)
@@ -88,8 +84,6 @@ console.log(dataToSend)
       console.log(err)
       this.setState({errors: err.errors })
     })
-     
-    // this.setState({ title: '' })
 
     this.closeCreateModal()
 
@@ -122,7 +116,6 @@ console.log(dataToSend)
     }  
   }
 
-   
 
   render() {
 

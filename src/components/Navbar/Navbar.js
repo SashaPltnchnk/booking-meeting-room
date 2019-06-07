@@ -20,12 +20,12 @@ class Navbar extends Component {
     const kindaLogo = {
       textShadow: '1px 2px 6px rgb(169, 152, 152)'
     }
+    
     return (
       <Header as='h3' dividing>
           <div style={navStyle}>
             <Link to='/'><Header size='medium' color='grey' style={kindaLogo}>Booking negotiation rooms</Header></Link>
                 {
-                  // !!localStorage.getItem('token')
                   isAuth
                   ? <SignedInLinks />
                   : <SignedOutLinks />

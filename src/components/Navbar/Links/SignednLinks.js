@@ -8,18 +8,12 @@ import { Button, Popup } from 'semantic-ui-react'
 class LogInLinks extends Component {
 
   handleLogOut = () => {
-    // localStorage.clear();
-    // sessionStorage.clear();
     this.props.logOut()
     this.props.history.push('/')
   }
 
   render() {
-    // console.warn('sokisdfojifsokjidfspokdfspokds', this.props)
-    // debugger
 
- 
-  
     return (
       <div> 
           <Popup

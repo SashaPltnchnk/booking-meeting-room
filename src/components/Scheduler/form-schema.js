@@ -13,6 +13,6 @@ export default  yup.object().shape({
     title: yup.string()
         // .notOneOf([''])
         // .nullable()
-        .required("event is required!")
+        .required("don't leave event field empty")
       
   })

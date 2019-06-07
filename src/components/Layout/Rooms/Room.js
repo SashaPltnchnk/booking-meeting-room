@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { NavLink, withRouter } from 'react-router-dom'
-// import { Button } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { setCurrentColor } from '../../../store/actions/color'
 
@@ -12,14 +11,6 @@ class Room extends Component {
         this.props.setCurrentColor(color)
     }
 
-    // componentDidMount() {
-    //     debugger
-    //     const {colors} = this.props
-    //     const colorId = this.props.location.pathname.split('/')[2];
-    //     const currentColor = colors.find(color => color.id === colorId)
-    //     this.props.setCurrentColor(currentColor.color)
-    // }
-
     render() { 
        const {colorName, id} = this.props;
         return ( 
@@ -28,10 +19,7 @@ class Room extends Component {
                     to ={`/room/${id}`}
                     >
                     <button 
-                    // active
-                        // size='large'
                         onClick={() => this.handleSettingColor(colorName)} 
-                        // color={colorName}
                         className={colorName}
                     >{colorName}
                     </button>
