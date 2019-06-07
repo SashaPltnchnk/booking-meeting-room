@@ -1,7 +1,6 @@
-// import { string, object } from 'yup';
+
 import * as yup from 'yup';
 
-// let yup = require('yup');
 
 export default yup.object().shape({
 

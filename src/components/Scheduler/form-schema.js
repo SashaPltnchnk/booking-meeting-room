@@ -1,26 +1,18 @@
-import { string, object } from 'yup';
-// import yup from 'yup';
 
-let yup = require('yup');
+import * as yup from 'yup';
 
-export default yup.object().shape({
+// export default yup.object().shape({
 
-    event: yup.string().required()
+//     event: yup.string().required("please, don't leave the event field empty")
 
-    // firstName:      yup.string().required(),
-
-    // lastName:      yup.string().required(),
-
-    // //yup comes with some handy validation functions, as you can see email validation for us!
-    // email:      yup.string().email().required(),
-
-    // sex: yup.string().required()
-})
+// })
 
 
-// let yup = require('yup');
-
-// var contactSchema = yup.object({
-//     event: yup.string()
-//       .required(),
-//   })
+export default  yup.object().shape({
+    
+    title: yup.string()
+        // .notOneOf([''])
+        // .nullable()
+        .required("event is required!")
+      
+  })

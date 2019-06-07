@@ -9,8 +9,8 @@ import '../../App.css'
 import DeleteEventModal from "./DeleteEventModal";
 import CreateEventModal from "./CreateEventModal";
 import MessageError from "./MessageError";
-import { Icon } from "semantic-ui-react";
-import { asyncValidate } from './CreateEventModal'
+import { Icon, Message } from "semantic-ui-react";
+import schema from './form-schema';
 
 
 const localizer = BigCalendar.momentLocalizer(moment);
@@ -47,7 +47,8 @@ class Scheduler extends Component {
       title: '',
       slot: null,
       event: {},
-      isTimeError: false
+      isTimeError: false,
+      errors: ''
   }
 
   showDeleteModal = dimmer => this.setState({ dimmer, openDeleteEvent: true,  })
@@ -63,34 +64,35 @@ class Scheduler extends Component {
   }
 
   handleSelect = () => {
-    const {title, slot} = this.state
-
-    asyncValidate(title)
-
-    let dataToSend = slot.start === slot.end
-    ? {
-      from: new Date(slot.start).setHours(9, 0, 0),
-      to: new Date(slot.end).setHours(19, 0, 0),
-      hall_id: this.props.match.params.roomId,
-      user_id: localStorage.getItem('user_id'),
-      eventTitle: '',
-      title,
-      }
-
-    : {
+    const {title, slot } = this.state
+    
+    let dataToSend = {
       from: new Date(slot.start).getTime(),
       to: new Date(slot.end).getTime(),
       hall_id: this.props.match.params.roomId,
       user_id: localStorage.getItem('user_id'),
       eventTitle: '',
       title,
-      }
+    }
 
-    this.props.addEvent(dataToSend)
+    // debugger
+    console.log(schema)
+    console.log(title)
+console.log(dataToSend)
+  schema.validate({title}, {abortEarly: false})
+    .then(() => {
+      this.props.addEvent(dataToSend)
+      this.setState({errors: '', title: ''})
+    })
+    .catch(err => {
+      console.log(err)
+      this.setState({errors: err.errors })
+    })
      
-    this.setState({ title: '' })
+    // this.setState({ title: '' })
 
     this.closeCreateModal()
+
   }
 
   
@@ -124,7 +126,7 @@ class Scheduler extends Component {
 
   render() {
 
-    const { openDeleteEvent, dimmer, title, openCreateEventModal } = this.state
+    const { openDeleteEvent, dimmer, title, openCreateEventModal, errors } = this.state
 
     const newEvents = this.props.events
       .filter(event => this.props.match.params.roomId === event.hall_id)
@@ -141,6 +143,7 @@ class Scheduler extends Component {
     return (
       <div className={this.props.currentColor}>
         <MessageError content={this.props.err}/>
+        {errors && <Message warning>{errors}</Message>}
 
         <BigCalendar
           localizer={localizer}
@@ -186,6 +189,7 @@ class Scheduler extends Component {
           handleSelect={this.handleSelect}
           changeHandler={this.changeHandler}
           title={title}
+          errors={errors}
         />
         
       </div>

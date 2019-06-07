@@ -1,47 +1,22 @@
 import React, { Component } from 'react'
-import { Button, Modal, Input, Form } from 'semantic-ui-react'
+import { Button, Modal, Input, Form, Message } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-// import { addError } from '../../store/actions/events'
-
-
-import schema from './form-schema'
-
-export const asyncValidate = value => {
-    // const {title} = this.props
-
-    return new Promise((resolve, reject) => {
-
-        console.log(value)
-
-        //Validate our form values against our schema! Also dont abort the validate early.
-        schema.validate(value, {abortEarly: false})
-            .then(() => {
-                //form is valid happy days!
-                alert('Your form is valid!')
-                resolve();
-            })
-            .catch(err => {
-                console.log(err.errors)
-                // addError(err.errors)
-
-            })
-    });
-
-};
 
 
 class CreateEventModal extends Component {
     render() {
         // console.warn('RRRR', this.props.err);
         
-        const {openCreateEventModal, dimmer, closeCreateModal, changeHandler, handleSelect, title } = this.props
+        const {openCreateEventModal, dimmer, closeCreateModal, changeHandler, handleSelect, title, errors } = this.props
 
 
         let modalContent = <Modal.Header> Sign in or register to have possibility of booking negotiation rooms </Modal.Header>
         if (this.props.isAuth) {
             modalContent = 
             <>
+               
                 <Modal.Header>New Event name</Modal.Header>
+                
                 <Modal.Content>
                     <Form onSubmit={
                         () => handleSelect()}>
@@ -73,6 +48,7 @@ class CreateEventModal extends Component {
         return (
             <div>
                 <Modal size='tiny' dimmer={dimmer} open={openCreateEventModal} onClose={closeCreateModal}>
+                    {errors && <Message warning>{errors}</Message>}
                     {modalContent}
                 </Modal>
             </div>
