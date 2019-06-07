@@ -12,7 +12,7 @@ function App() {
     paddingTop: '20px'
   }
   return (
-    <BrowserRouter history={history}>
+    <BrowserRouter >
         <Container style={containerStyle}>
           <Navbar />
           <RouteComponent />
