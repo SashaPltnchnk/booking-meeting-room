@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { register } from '../../../store/actions/auth'
+import { fetchEvents } from '../../../store/actions/events'
 import Form from './FormAuth'
 import { Message } from 'semantic-ui-react'
 import schema from './form-schema';
@@ -33,13 +34,14 @@ class Authorization extends Component {
     submitHandler = (e) => {
         console.log(this.props)
         const {username, email, password} = this.state.form
-        const {register} = this.props
+        const {register, fetchEvents} = this.props
         e.preventDefault();
         console.log(this.state.form)
         schema.validate(this.state.form, {abortEarly: false})
             .then(() => {
                 register({username, password, email})
                 this.setState({errors: ''})
+                fetchEvents()
             })
             .catch(err => {
                 this.setState({errors: err.errors})
@@ -79,6 +81,6 @@ const mapStateToProps = state => {
 }
 
 
-const mapDispatchToProps = { register };
+const mapDispatchToProps = { register, fetchEvents };
  
 export default connect(mapStateToProps, mapDispatchToProps)(Authorization);

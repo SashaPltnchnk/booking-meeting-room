@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { signIn } from '../../../store/actions/auth'
+import { fetchEvents } from '../../../store/actions/events'
 import Form from './FormAuth'
 import { Message } from 'semantic-ui-react'
 import schema from './form-schema';
@@ -32,12 +33,13 @@ class SignIn extends Component {
 
     submitHandler = (e) => {
         const {username, email, password} = this.state.form
-        const {signIn,} = this.props
+        const {signIn, fetchEvents} = this.props
         e.preventDefault();
         schema.validate(this.state.form, {abortEarly: false})
             .then(() => {
                 signIn({username, password, email})
                 this.setState({errors: ''})
+                fetchEvents()
             })
             .catch(err => {
                 this.setState({errors: err.errors})
@@ -46,7 +48,7 @@ class SignIn extends Component {
 
     render() { 
         const { error } = this.props
-        const {errors, form} = this.state
+        const { errors, form } = this.state
 
         let showError  = this.props.error 
         ? <Message warning>
@@ -76,6 +78,6 @@ const mapStateToProps = state => {
 }
 
 
-const mapDispatchToProps = { signIn };
+const mapDispatchToProps = { signIn, fetchEvents };
  
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
